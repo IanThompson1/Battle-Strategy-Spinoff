@@ -11,15 +11,32 @@ startGameButton.addEventListener('click', function () {
     switch (pathNum){
         case 0:
             bonusHint = "Welcome to Final Defence! Good Luck!";
-            hint = "Watch out for enemies with shields and armor";
-            availableTowers = [1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 5];
-            totalmoney = 250;
+            hint = "Mostly basic enemies!";
+            switch(difficulty){
+                case 1:
+                    availableTowers = [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2];
+                    break;
+                case 2:
+                    availableTowers = [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2];
+                    break;
+                case 3:
+                    availableTowers = [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3];
+                    break;
+                case 4:
+                    availableTowers = [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3];
+                    break;
+            }
+            totalmoney = 100;
             break;
         case 1:
             bonusHint = "You now have access to the Bomb and Slow towers";
             hint = "Here you will encounter grouped, speedy, and health regen enemies";
-            availableTowers = [1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 5];
-            totalmoney = 300;
+            if(difficulty < 3){
+                availableTowers = [1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 4];
+            }else{
+                availableTowers = [1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 5];
+            }
+            totalmoney = 100;
             break;
         case 2:
             bonusHint = "You can now use the Railgun to help against 2 different paths!";
@@ -67,14 +84,14 @@ startGameButton.addEventListener('click', function () {
     }
     switch (difficulty) {
         case 1:
-            totalmoney += 200;
+            totalmoney += 50;
             lives = 20;
             towerSpots = [];
             towerSpots = towerSpots1;
             round = 0;
             break;
         case 2:
-            totalmoney += 100;
+            totalmoney += 30;
             lives = 15;
             towerSpots = [];
             towerSpots = towerSpots2;
@@ -88,7 +105,7 @@ startGameButton.addEventListener('click', function () {
             round = 0;
             break;
         case 4:
-            totalmoney += -50;
+            totalmoney += 0;
             lives = 1;
             towerSpots = [];
             towerSpots = towerSpots4;
@@ -103,7 +120,7 @@ startGameButton.addEventListener('click', function () {
                     towerSpots.push([x,y]);
                 }
             }
-            availableTowers = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 5];
+            availableTowers = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3];
             bonusHint = "Sandbox, feel free to test out different tower combinations";
             hint = "Custom Sandbox rounds";
             round = output.innerHTML-1;
@@ -271,7 +288,7 @@ restartButton.addEventListener('click', function () {
             bonusHint = "Welcome to Final Defence! Good Luck!";
             hint = "Watch out for enemies with shields and armor";
             availableTowers = [1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 5];
-            totalmoney = 250;
+            totalmoney = 100;
             break;
         case 1:
             bonusHint = "You now have access to the Bomb and Slow towers";
@@ -325,14 +342,14 @@ restartButton.addEventListener('click', function () {
     }
     switch (difficulty) {
         case 1:
-            totalmoney += 200;
+            totalmoney += 50;
             lives = 20;
             towerSpots = [];
             towerSpots = towerSpots1;
             round = 0;
             break;
         case 2:
-            totalmoney += 100;
+            totalmoney += 30;
             lives = 15;
             towerSpots = [];
             towerSpots = towerSpots2;
@@ -346,7 +363,7 @@ restartButton.addEventListener('click', function () {
             round = 0;
             break;
         case 4:
-            totalmoney += -50;
+            totalmoney += 0;
             lives = 1;
             towerSpots = [];
             towerSpots = towerSpots4;
@@ -392,7 +409,7 @@ restartButton2.addEventListener('click', function () {
             bonusHint = "Welcome to Final Defence! Good Luck!";
             hint = "Watch out for enemies with shields and armor";
             availableTowers = [1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 5];
-            totalmoney = 250;
+            totalmoney = 100;
             break;
         case 1:
             bonusHint = "You now have access to the Bomb and Slow towers";
@@ -446,14 +463,14 @@ restartButton2.addEventListener('click', function () {
     }
     switch (difficulty) {
         case 1:
-            totalmoney += 200;
+            totalmoney += 50;
             lives = 20;
             towerSpots = [];
             towerSpots = towerSpots1;
             round = 0;
             break;
         case 2:
-            totalmoney += 100;
+            totalmoney += 30;
             lives = 15;
             towerSpots = [];
             towerSpots = towerSpots2;
@@ -467,7 +484,7 @@ restartButton2.addEventListener('click', function () {
             round = 0;
             break;
         case 4:
-            totalmoney += -50;
+            totalmoney += 0;
             lives = 1;
             towerSpots = [];
             towerSpots = towerSpots4;
@@ -577,7 +594,7 @@ nextLevelButton.addEventListener('click', function () {
             bonusHint = "Welcome to Final Defence! Good Luck!";
             hint = "Watch out for enemies with shields and armor";
             availableTowers = [1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 5];
-            totalmoney = 250;
+            totalmoney = 100;
             break;
         case 1:
             bonusHint = "You now have access to the Bomb and Slow towers";

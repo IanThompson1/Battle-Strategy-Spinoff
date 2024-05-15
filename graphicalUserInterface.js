@@ -270,28 +270,28 @@ function drawLayout() {
     //towers
     if(menutype == 0){
         if(availableTowers[0] == 1){
-            addDoubleText("Sniper", "Cost: 150", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (2 / 2), "black", numboxes, canAfford(150));
+            addDoubleText("Sniper", "Cost: 200", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (2 / 2), "black", numboxes, canAfford(200));
         }
         if(availableTowers[1] == 1){
             addDoubleText("Flame", "Cost: 100", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (2 / 2), "black", numboxes, canAfford(100));
         }
         if(availableTowers[2] == 1){
-            addDoubleText("Tesla", "Cost: 200", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (4 / 2), "black", numboxes, canAfford(200));
+            addDoubleText("Tesla", "Cost: 250", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (4 / 2), "black", numboxes, canAfford(250));
         }
         if(availableTowers[3] == 1){
-            addDoubleText("laser", "Cost: 150", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (4 / 2), "black", numboxes, canAfford(150));
+            addDoubleText("laser", "Cost: 200", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (4 / 2), "black", numboxes, canAfford(200));
         }
         if(availableTowers[4] == 1){
-            addDoubleText("Slow", "Cost: 100", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (6 / 2), "black", numboxes, canAfford(100));
+            addDoubleText("Slow", "Cost: 200", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (6 / 2), "black", numboxes, canAfford(200));
         }
         if(availableTowers[5] == 1){
-            addDoubleText("Bomb", "Cost: 100", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (6 / 2), "black", numboxes, canAfford(100));
+            addDoubleText("Bomb", "Cost: 150", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (6 / 2), "black", numboxes, canAfford(150));
         }
         if(availableTowers[6] == 1){
-            addDoubleText("Farm", "Cost: 800", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes, canAfford(800));
+            addDoubleText("Farm", "Cost: 200", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes, canAfford(200));
         }
         if(availableTowers[7] == 1){
-            addDoubleText("Railgun", "Cost: 400", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes, canAfford(400));
+            addDoubleText("Railgun", "Cost: 300", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes, canAfford(300));
         }
         if(availableTowers[8] == 1){
             addDoubleText("Buffer", "Cost: 100", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (10 / 2), "black", numboxes, canAfford(100));
@@ -317,17 +317,19 @@ function drawLayout() {
                 addDoubleText("Damage", towers[i].damage, canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (4 / 2), "black", numboxes);
                 addDoubleText("Speed", "Slow", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (4 / 2), "black", numboxes);
                 addDoubleText("Range", "Long", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (6 / 2), "black", numboxes);
-
-                addText("Level:"+(towers[i].level+1), canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes);
-                towers.push(new Tower(-100,-100,"Sniper",towers[i].level+1,0));
-                towers[towers.length-1].buffs = towers[i].buffs;
-                towers[towers.length-1].update();
-                addDoubleText("Damage", towers[towers.length-1].damage, canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes);
-                towers.splice(towers.length-1,1);
-                addDoubleText("", "", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (10 / 2), "black", numboxes);
-                addDoubleText("", "", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (10 / 2), "black", numboxes);
                 addText("sell:"+towers[i].value, canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (12 / 2), "yellow", numboxes);
-                addDoubleText("upgrade", "Cost:"+towers[i].cost[towers[i].level], canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (12 / 2), "black", numboxes, canAfford(towers[i].cost[towers[i].level]));
+
+                if(towers[i].level < availableTowers[13]){
+                    addText("Level:"+(towers[i].level+1), canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes);
+                    towers.push(new Tower(-100,-100,"Sniper",towers[i].level+1,0));
+                    towers[towers.length-1].buffs = towers[i].buffs;
+                    towers[towers.length-1].update();
+                    addDoubleText("Damage", towers[towers.length-1].damage, canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes);
+                    towers.splice(towers.length-1,1);
+                    addDoubleText("", "", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (10 / 2), "black", numboxes);
+                    addDoubleText("", "", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (10 / 2), "black", numboxes);
+                    addDoubleText("upgrade", "Cost:"+towers[i].cost[towers[i].level], canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (12 / 2), "black", numboxes, canAfford(towers[i].cost[towers[i].level]));
+                }
             }
             else if (towers[i].type == "Sniper" && towers[i].level == 5) { //level 5 Sniper
                 addDoubleText("Sniper", "level:5", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (2 / 2), "black", numboxes);
@@ -365,17 +367,19 @@ function drawLayout() {
                 addDoubleText("Damage", towers[i].damage, canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (4 / 2), "black", numboxes);
                 addDoubleText("Speed", "Fast", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (4 / 2), "black", numboxes);
                 addDoubleText("Range", "Short", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (6 / 2), "black", numboxes);
-
-                addText("level:"+(towers[i].level+1), canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes);
-                towers.push(new Tower(-100,-100,"Minigun",towers[i].level+1,0));
-                towers[towers.length-1].buffs = towers[i].buffs;
-                towers[towers.length-1].update();
-                addDoubleText("Damage", towers[towers.length-1].damage, canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes);
-                towers.splice(towers.length-1,1);
-                addDoubleText("", "", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (10 / 2), "black", numboxes);
-                addDoubleText("", "", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (10 / 2), "black", numboxes);
                 addText("sell:"+towers[i].value, canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (12 / 2), "yellow", numboxes);
-                addDoubleText("upgrade", "Cost:"+towers[i].cost[towers[i].level], canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (12 / 2), "black", numboxes, canAfford(towers[i].cost[towers[i].level]));
+
+                if(towers[i].level < availableTowers[13]){
+                    addText("level:"+(towers[i].level+1), canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes);
+                    towers.push(new Tower(-100,-100,"Minigun",towers[i].level+1,0));
+                    towers[towers.length-1].buffs = towers[i].buffs;
+                    towers[towers.length-1].update();
+                    addDoubleText("Damage", towers[towers.length-1].damage, canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes);
+                    towers.splice(towers.length-1,1);
+                    addDoubleText("", "", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (10 / 2), "black", numboxes);
+                    addDoubleText("", "", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (10 / 2), "black", numboxes);
+                    addDoubleText("upgrade", "Cost:"+towers[i].cost[towers[i].level], canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (12 / 2), "black", numboxes, canAfford(towers[i].cost[towers[i].level]));
+                }
             }
             else if (towers[i].type == "Minigun" && towers[i].level == 5) { //level 5 minigun
                 addDoubleText("Flame", "level:5", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (2 / 2), "black", numboxes);
@@ -416,17 +420,19 @@ function drawLayout() {
                 addDoubleText("Damage", Math.floor(towers[i].damage), canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (4 / 2), "#5E2926", numboxes);
                 addDoubleText("HeatUp", towers[i].heatup, canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (6 / 2), "black", numboxes);
                 addDoubleText("Range", "Medium", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (6 / 2), "black", numboxes);
-
-                addText("level:"+(towers[i].level+1), canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes);
-                towers.push(new Tower(-100,-100,"laser",towers[i].level+1,0));
-                towers[towers.length-1].buffs = towers[i].buffs;
-                towers[towers.length-1].update();
-                addDoubleText("Damage", towers[towers.length-1].lasermin+"->"+towers[towers.length-1].lasermax, canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes);
-                addDoubleText("HeatUp", towers[towers.length-1].heatup, canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (10 / 2), "black", numboxes);
-                towers.splice(towers.length-1,1);
-                addDoubleText("", "", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (10 / 2), "black", numboxes);
                 addText("sell:"+towers[i].value, canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (12 / 2), "yellow", numboxes);
-                addDoubleText("upgrade", "Cost:"+towers[i].cost[towers[i].level], canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (12 / 2), "black", numboxes, canAfford(towers[i].cost[towers[i].level]));
+
+                if(towers[i].level < availableTowers[13]){
+                    addText("level:"+(towers[i].level+1), canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes);
+                    towers.push(new Tower(-100,-100,"laser",towers[i].level+1,0));
+                    towers[towers.length-1].buffs = towers[i].buffs;
+                    towers[towers.length-1].update();
+                    addDoubleText("Damage", towers[towers.length-1].lasermin+"->"+towers[towers.length-1].lasermax, canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes);
+                    addDoubleText("HeatUp", towers[towers.length-1].heatup, canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (10 / 2), "black", numboxes);
+                    towers.splice(towers.length-1,1);
+                    addDoubleText("", "", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (10 / 2), "black", numboxes);
+                    addDoubleText("upgrade", "Cost:"+towers[i].cost[towers[i].level], canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (12 / 2), "black", numboxes, canAfford(towers[i].cost[towers[i].level]));
+                }
             }
             else if (towers[i].type == "laser" && towers[i].level == 5) { //level 5 laser
                 addDoubleText("Laser", "level:"+towers[i].level, canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (2 / 2), "black", numboxes);
@@ -469,17 +475,19 @@ function drawLayout() {
                 addDoubleText("NumTargets", ""+towers[i].numTargets, canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (4 / 2), "black", numboxes);                
                 addDoubleText("Speed", "Medium", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (6 / 2), "black", numboxes);
                 addDoubleText("Range", "Medium", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (6 / 2), "black", numboxes);
-
-                addText("Level:"+(towers[i].level+1), canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes);
-                towers.push(new Tower(-100,-100,"tesla",towers[i].level+1,0));
-                towers[towers.length-1].buffs = towers[i].buffs;
-                towers[towers.length-1].update();
-                addDoubleText("Damage", towers[towers.length-1].damage, canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes);
-                addDoubleText("NumTargets", towers[towers.length-1].numTargets, canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (10 / 2), "black", numboxes);
-                towers.splice(towers.length-1,1);
-                addDoubleText("", "", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (10 / 2), "black", numboxes);
                 addText("sell:"+towers[i].value, canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (12 / 2), "yellow", numboxes);
-                addDoubleText("upgrade", "Cost:"+towers[i].cost[towers[i].level], canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (12 / 2), "black", numboxes, canAfford(towers[i].cost[towers[i].level]));
+
+                if(towers[i].level < availableTowers[13]){
+                    addText("Level:"+(towers[i].level+1), canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes);
+                    towers.push(new Tower(-100,-100,"tesla",towers[i].level+1,0));
+                    towers[towers.length-1].buffs = towers[i].buffs;
+                    towers[towers.length-1].update();
+                    addDoubleText("Damage", towers[towers.length-1].damage, canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes);
+                    addDoubleText("NumTargets", towers[towers.length-1].numTargets, canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (10 / 2), "black", numboxes);
+                    towers.splice(towers.length-1,1);
+                    addDoubleText("", "", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (10 / 2), "black", numboxes);
+                    addDoubleText("upgrade", "Cost:"+towers[i].cost[towers[i].level], canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (12 / 2), "black", numboxes, canAfford(towers[i].cost[towers[i].level]));
+                }
             }
             else if (towers[i].type == "tesla" && towers[i].level == 5) { //level 5 Tesla
                 addDoubleText("Tesla", "level:"+towers[i].level, canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (2 / 2), "black", numboxes);
@@ -520,14 +528,16 @@ function drawLayout() {
                 addDoubleText("Farm", "level:"+towers[i].level, canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (2 / 2), "black", numboxes);
                 addDoubleText("Income", towers[i].income, canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (2 / 2), "black", numboxes);
                 addDoubleText("Generated", towers[i].generated, canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (4 / 2), "black", numboxes);
-                
-                addDoubleText("Farm", "level:"+(towers[i].level+1), canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes);
-                towers.push(new Tower(-100,-100,"farm",towers[i].level+1,0));
-                towers[towers.length-1].update();
-                addDoubleText("Income", towers[towers.length-1].income, canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes);
-                towers.splice(towers.length-1,1);
                 addText("sell:"+towers[i].value, canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (12 / 2), "yellow", numboxes);
-                addDoubleText("upgrade", "Cost:"+towers[i].cost[towers[i].level], canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (12 / 2), "black", numboxes, canAfford(towers[i].cost[towers[i].level]));
+
+                if(towers[i].level < availableTowers[13]){
+                    addDoubleText("Farm", "level:"+(towers[i].level+1), canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes);
+                    towers.push(new Tower(-100,-100,"farm",towers[i].level+1,0));
+                    towers[towers.length-1].update();
+                    addDoubleText("Income", towers[towers.length-1].income, canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes);
+                    towers.splice(towers.length-1,1);
+                    addDoubleText("upgrade", "Cost:"+towers[i].cost[towers[i].level], canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (12 / 2), "black", numboxes, canAfford(towers[i].cost[towers[i].level]));
+                }
             }
             else if (towers[i].type == "farm" && towers[i].level == 7) { //max Farm
                 addDoubleText("Farm", "level:Max", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (2 / 2), "black", numboxes);
@@ -542,16 +552,18 @@ function drawLayout() {
                 addDoubleText("Target", "Area", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (2 / 2), "black", numboxes);
                 addDoubleText("Slow", towers[i].slow+"%", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (4 / 2), "black", numboxes);
                 addDoubleText("Range", "Short", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (4 / 2), "black", numboxes);
-
-                addDoubleText("Ice", "level:"+(towers[i].level+1), canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes);
-                towers.push(new Tower(-100,-100,"ice",towers[i].level+1,0));
-                towers[towers.length-1].update();
-                addDoubleText("Slow", towers[towers.length-1].slow+"%", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes);
-                towers.splice(towers.length-1,1);
-                addDoubleText("", "", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (10 / 2), "black", numboxes);
-                addDoubleText("", "", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (10 / 2), "black", numboxes);
                 addText("sell:"+towers[i].value, canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (12 / 2), "yellow", numboxes);
-                addDoubleText("upgrade", "Cost:"+towers[i].cost[towers[i].level], canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (12 / 2), "black", numboxes, canAfford(towers[i].cost[towers[i].level]));
+
+                if(towers[i].level < availableTowers[13]){
+                    addDoubleText("Ice", "level:"+(towers[i].level+1), canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes);
+                    towers.push(new Tower(-100,-100,"ice",towers[i].level+1,0));
+                    towers[towers.length-1].update();
+                    addDoubleText("Slow", towers[towers.length-1].slow+"%", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes);
+                    towers.splice(towers.length-1,1);
+                    addDoubleText("", "", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (10 / 2), "black", numboxes);
+                    addDoubleText("", "", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (10 / 2), "black", numboxes);
+                    addDoubleText("upgrade", "Cost:"+towers[i].cost[towers[i].level], canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (12 / 2), "black", numboxes, canAfford(towers[i].cost[towers[i].level]));
+                }
             }
             else if (towers[i].type == "ice" && towers[i].level == 5) { //level 5 ice
                 addDoubleText("Ice", "level:"+towers[i].level, canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (2 / 2), "black", numboxes);
@@ -589,16 +601,18 @@ function drawLayout() {
                 addDoubleText("Range", "Short", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (4 / 2), "black", numboxes);
                 addDoubleText("Splash", "Medium", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (6 / 2), "black", numboxes);
                 addDoubleText("Pierce", towers[i].pierce, canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (6 / 2), "black", numboxes);
-
-                addText("level:"+(towers[i].level+1), canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes);
-                towers.push(new Tower(-100,-100,"bomb",towers[i].level+1,0));
-                towers[towers.length-1].buffs = towers[i].buffs;
-                towers[towers.length-1].update();
-                addDoubleText("Damage", towers[towers.length-1].damage, canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes);
-                addDoubleText("Pierce", towers[towers.length-1].pierce, canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (10 / 2), "black", numboxes);
-                towers.splice(towers.length-1,1);
                 addText("sell:"+towers[i].value, canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (12 / 2), "yellow", numboxes);
-                addDoubleText("upgrade", "Cost:"+towers[i].cost[towers[i].level], canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (12 / 2), "black", numboxes, canAfford(towers[i].cost[towers[i].level]));
+
+                if(towers[i].level < availableTowers[13]){
+                    addText("level:"+(towers[i].level+1), canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes);
+                    towers.push(new Tower(-100,-100,"bomb",towers[i].level+1,0));
+                    towers[towers.length-1].buffs = towers[i].buffs;
+                    towers[towers.length-1].update();
+                    addDoubleText("Damage", towers[towers.length-1].damage, canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes);
+                    addDoubleText("Pierce", towers[towers.length-1].pierce, canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (10 / 2), "black", numboxes);
+                    towers.splice(towers.length-1,1);
+                    addDoubleText("upgrade", "Cost:"+towers[i].cost[towers[i].level], canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (12 / 2), "black", numboxes, canAfford(towers[i].cost[towers[i].level]));
+                }
             }
             else if (towers[i].type == "bomb" && towers[i].level == 5) { //level 5 Bomb
                 addDoubleText("Bomb", "level:"+towers[i].level, canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (2 / 2), "black", numboxes);
@@ -643,20 +657,23 @@ function drawLayout() {
                     addDoubleText("Speed", "Fast", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (4 / 2), "black", numboxes);
                 }
                 addDoubleText("Range", "Long", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (6 / 2), "black", numboxes);
-                addText("Level:"+(towers[i].level+1), canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes);
-                towers.push(new Tower(-100,-100,"super",towers[i].level+1,0));
-                towers[towers.length-1].buffs = towers[i].buffs;
-                towers[towers.length-1].update();
-                if(towers[i].level == 3){
-                    addDoubleText("Speed", "VeryFast", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes);
-                }else{
-                    addDoubleText("Damage", towers[towers.length-1].damage, canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes);
-                }
-                towers.splice(towers.length-1,1);
-                addDoubleText("", "", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (10 / 2), "black", numboxes);
-                addDoubleText("", "", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (10 / 2), "black", numboxes);
                 addText("sell:"+towers[i].value, canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (12 / 2), "yellow", numboxes);
-                addDoubleText("upgrade", "Cost:"+towers[i].cost[towers[i].level], canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (12 / 2), "black", numboxes, canAfford(towers[i].cost[towers[i].level]));
+
+                if(towers[i].level < availableTowers[13]){
+                    addText("Level:"+(towers[i].level+1), canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes);
+                    towers.push(new Tower(-100,-100,"super",towers[i].level+1,0));
+                    towers[towers.length-1].buffs = towers[i].buffs;
+                    towers[towers.length-1].update();
+                    if(towers[i].level == 3){
+                        addDoubleText("Speed", "VeryFast", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes);
+                    }else{
+                        addDoubleText("Damage", towers[towers.length-1].damage, canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes);
+                    }
+                    towers.splice(towers.length-1,1);
+                    addDoubleText("", "", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (10 / 2), "black", numboxes);
+                    addDoubleText("", "", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (10 / 2), "black", numboxes);
+                    addDoubleText("upgrade", "Cost:"+towers[i].cost[towers[i].level], canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (12 / 2), "black", numboxes, canAfford(towers[i].cost[towers[i].level]));
+                }
             }
             else if (towers[i].type == "super" && towers[i].level == 5) { //level 5 Super
                 addDoubleText("Super", "level:5", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (2 / 2), "black", numboxes);
@@ -691,35 +708,38 @@ function drawLayout() {
                 addDoubleText("Range", "1.2", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (2 / 2), "black", numboxes);
                 addDoubleText("", "", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (4 / 2), "black", numboxes);
                 addDoubleText("", "", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (4 / 2), "black", numboxes);
-
-                addDoubleText("Buffer", "level:2", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes);
-                addDoubleText("Speed", "1.2", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes);
                 addText("sell:"+towers[i].value, canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (12 / 2), "yellow", numboxes);
-                addDoubleText("upgrade", "Cost:"+towers[i].cost[towers[i].level], canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (12 / 2), "black", numboxes, canAfford(towers[i].cost[towers[i].level]));
+                if(towers[i].level < availableTowers[13]){
+                    addDoubleText("Buffer", "level:2", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes);
+                    addDoubleText("Speed", "1.2", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes);
+                    addDoubleText("upgrade", "Cost:"+towers[i].cost[towers[i].level], canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (12 / 2), "black", numboxes, canAfford(towers[i].cost[towers[i].level]));
+                }
             }
             else if (towers[i].type == "buffer" && towers[i].level == 2) { //level 2 Buffer
                 addDoubleText("Buffer", "level:2", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (2 / 2), "black", numboxes);
                 addDoubleText("Range", "1.2", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (2 / 2), "black", numboxes);
                 addDoubleText("Speed", "1.2", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (4 / 2), "black", numboxes);
                 addDoubleText("", "", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (4 / 2), "black", numboxes);
-
-                addDoubleText("Buffer", "level:3", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes);
-                addDoubleText("Damage", "+10", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes);
                 addText("sell:"+towers[i].value, canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (12 / 2), "yellow", numboxes);
-                addDoubleText("upgrade", "Cost:"+towers[i].cost[towers[i].level], canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (12 / 2), "black", numboxes, canAfford(towers[i].cost[towers[i].level]));
+                if(towers[i].level < availableTowers[13]){
+                    addDoubleText("Buffer", "level:3", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes);
+                    addDoubleText("Damage", "+10", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes);
+                    addDoubleText("upgrade", "Cost:"+towers[i].cost[towers[i].level], canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (12 / 2), "black", numboxes, canAfford(towers[i].cost[towers[i].level]));
+                }
             }
             else if (towers[i].type == "buffer" && towers[i].level == 3) { //level 3 Buffer
                 addDoubleText("Buffer", "level:3", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (2 / 2), "black", numboxes);
                 addDoubleText("Range", "1.2", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (2 / 2), "black", numboxes);
                 addDoubleText("Speed", "1.2", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (4 / 2), "black", numboxes);
                 addDoubleText("Damage", "+10", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (4 / 2), "black", numboxes);
-
-                addDoubleText("Buffer", "level:4", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes);
-                addDoubleText("Pierce", "+1 OR x1.2", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes);
-                addDoubleText("Tesla", "x2 Targets", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (10 / 2), "red", numboxes);
-                addDoubleText("Laser", "No buff", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (10 / 2), "red", numboxes);                
                 addText("sell:"+towers[i].value, canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (12 / 2), "yellow", numboxes);
-                addDoubleText("upgrade", "Cost:"+towers[i].cost[towers[i].level], canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (12 / 2), "black", numboxes, canAfford(towers[i].cost[towers[i].level]));
+                if(towers[i].level < availableTowers[13]){
+                    addDoubleText("Buffer", "level:4", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes);
+                    addDoubleText("Pierce", "+1 OR x1.2", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes);
+                    addDoubleText("Tesla", "x2 Targets", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (10 / 2), "red", numboxes);
+                    addDoubleText("Laser", "No buff", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (10 / 2), "red", numboxes);                
+                    addDoubleText("upgrade", "Cost:"+towers[i].cost[towers[i].level], canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (12 / 2), "black", numboxes, canAfford(towers[i].cost[towers[i].level]));
+                }
             }
             else if (towers[i].type == "buffer" && towers[i].level == 4) { //level 4 Buffer
                 addDoubleText("Buffer", "level:4", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (2 / 2), "black", numboxes);
@@ -727,11 +747,12 @@ function drawLayout() {
                 addDoubleText("Speed", "1.2", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (4 / 2), "black", numboxes);
                 addDoubleText("Damage", "+10", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (4 / 2), "black", numboxes);
                 addDoubleText("Pierce", "+1 OR x1.2", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (6 / 2), "black", numboxes);
-
-                addDoubleText("Buffer", "level:5", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes);
-                addDoubleText("Damage", "x1.2", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes);
                 addText("sell:"+towers[i].value, canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (12 / 2), "yellow", numboxes);
-                addDoubleText("upgrade", "Cost:"+towers[i].cost[towers[i].level], canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (12 / 2), "black", numboxes, canAfford(towers[i].cost[towers[i].level]));
+                if(towers[i].level < availableTowers[13]){
+                    addDoubleText("Buffer", "level:5", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes);
+                    addDoubleText("Damage", "x1.2", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes);
+                    addDoubleText("upgrade", "Cost:"+towers[i].cost[towers[i].level], canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (12 / 2), "black", numboxes, canAfford(towers[i].cost[towers[i].level]));
+                }
             }
             else if (towers[i].type == "buffer" && towers[i].level == 5) { //level 5 Buffer
                 addDoubleText("Buffer", "level:5", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (2 / 2), "black", numboxes);
@@ -751,17 +772,19 @@ function drawLayout() {
                 addDoubleText("Speed", "VerySlow", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (4 / 2), "black", numboxes);
                 addDoubleText("Range", "Long", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (6 / 2), "black", numboxes);
                 addDoubleText("Pierce", towers[i].pierce, canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (6 / 2), "black", numboxes);
-
-                addText("Level:"+(towers[i].level+1), canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes);
-                towers.push(new Tower(-100,-100,"railgun",towers[i].level+1,0));
-                towers[towers.length-1].buffs = towers[i].buffs;
-                towers[towers.length-1].update();
-                addDoubleText("Damage", towers[towers.length-1].damage, canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes);
-                addDoubleText("Pierce", towers[towers.length-1].pierce, canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (10 / 2), "black", numboxes);                
-                towers.splice(towers.length-1,1);
-                addDoubleText("", "", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (10 / 2), "black", numboxes);
                 addText("sell:"+towers[i].value, canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (12 / 2), "yellow", numboxes);
-                addDoubleText("upgrade", "Cost:"+towers[i].cost[towers[i].level], canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (12 / 2), "black", numboxes, canAfford(towers[i].cost[towers[i].level]));
+
+                if(towers[i].level < availableTowers[13]){
+                    addText("Level:"+(towers[i].level+1), canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes);
+                    towers.push(new Tower(-100,-100,"railgun",towers[i].level+1,0));
+                    towers[towers.length-1].buffs = towers[i].buffs;
+                    towers[towers.length-1].update();
+                    addDoubleText("Damage", towers[towers.length-1].damage, canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes);
+                    addDoubleText("Pierce", towers[towers.length-1].pierce, canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (10 / 2), "black", numboxes);                
+                    towers.splice(towers.length-1,1);
+                    addDoubleText("", "", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (10 / 2), "black", numboxes);
+                    addDoubleText("upgrade", "Cost:"+towers[i].cost[towers[i].level], canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (12 / 2), "black", numboxes, canAfford(towers[i].cost[towers[i].level]));
+                }
             }
             else if (towers[i].type == "railgun" && towers[i].level == 5) { //level 5 Railgun
                 addDoubleText("Railgun", "level:5", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (2 / 2), "black", numboxes);

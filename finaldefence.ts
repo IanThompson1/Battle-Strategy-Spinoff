@@ -68,8 +68,8 @@ var paths3 = [[-1]];
 var pathNum :number = 0;
 //@ts-ignore
 var paths = choosepath(0); // 0=basic 1=cross 2=double 3=symmetry 4=castle 5=tripple
-var availableTowers = [1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 5]; //mostly boolean values for which towers you can use. snip, flame, tesla, laser, slow, bomb, farm, rail, buff, super, level6, level7, selling, upgrade level.
-var totalmoney :number = 500;
+var availableTowers = [1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2]; //mostly boolean values for which towers you can use. snip, flame, tesla, laser, slow, bomb, farm, rail, buff, super, level6, level7, selling, upgrade level.
+var totalmoney :number = 100;
 var lives :number = 10;
 var numboxes : number = 20;
 var mouseover :string = "none";
@@ -92,17 +92,17 @@ var hint :string = "";
 var bonusHint :string = "Welcome to Final Defence! Good Luck!";
 var menutype :number = 0; //0 = main menu 1 = tower menu
 
-//tower prices 
-var snipercosts = [150, 200, 250, 300, 350, 1000, 1400];
-var miniguncosts = [100, 150, 200, 250, 300, 600, 700];
-var teslacosts = [200, 220, 240, 300, 350, 1100, 1200];
-var lasercosts = [150, 200, 250, 300, 350, 900, 1400];
-var farmcosts = [800, 1000, 1200, 1400, 1600, 1800, 2000];
-var icecosts = [100, 120, 150, 200, 200, 500, 500];
-var bombcosts = [100, 150, 200, 250, 300, 800, 800];
-var supercosts = [3000, 4000, 5000, 6000, 7000, 10000, 15000];
-var buffercosts = [100, 200, 400, 500, 700];
-var railguncosts = [400, 500, 600, 700, 800, 1200, 1200];
+//tower prices (only for 3 and below)
+var snipercosts = [200, 200, 200, 200, 200, 1000, 1400];
+var miniguncosts = [100, 100, 100, 100, 100, 600, 700];
+var teslacosts = [250, 250, 250, 250, 250, 1100, 1200];
+var lasercosts = [200, 200, 200, 200, 200, 900, 1400];
+var farmcosts = [200, 200, 200, 200, 200, 1800, 2000];
+var icecosts = [200, 200, 200, 200, 200, 500, 500];
+var bombcosts = [150, 150, 150, 150, 150, 800, 800];
+var supercosts = [1000, 1000, 1000, 6000, 7000, 10000, 15000];
+var buffercosts = [200, 200, 200, 500, 700];
+var railguncosts = [300, 300, 300, 300, 300, 1200, 1200];
 
 var towerFootPrint :number = 95;
 //@ts-ignore
@@ -588,18 +588,18 @@ class Tower {
         this.shootNow = 10;
         this.buffs = 0;
         if (this.type == "Sniper") {
-            this.reload = 750;
-            this.damage = 10;
-            this.range = 350;
+            this.reload = 2500;
+            this.damage = 20;
+            this.range = 150;
             this.target = "first";
             this.pierce = 1;
-            this.value = 150;
+            this.value = 200;
             this.cost = snipercosts;
             this.tallness = -29;
         }else if (this.type == "Minigun") {
-            this.reload = 120;
-            this.damage = 2;
-            this.range = 150;
+            this.reload = 200;
+            this.damage = 1;
+            this.range = 120;
             this.target = "first";
             this.pierce = 1;
             this.value = 100;
@@ -1062,29 +1062,29 @@ class Tower {
     update(){
         if(this.type == "Sniper"){
             if(this.level == 1){
-                this.reload = 750;
-                this.damage = 10;
-                this.range = 350;
+                this.reload = 3000;
+                this.damage = 50;
+                this.range = 150;
                 this.pierce = 1;
             }else if(this.level == 2){
-                this.reload = 750;
-                this.damage = 20;
-                this.range = 350;
+                this.reload = 2750;
+                this.damage = 90;
+                this.range = 175;
                 this.pierce = 1;
             }else if(this.level == 3){
-                this.reload = 750;
-                this.damage = 30;
-                this.range = 350;
+                this.reload = 2500;
+                this.damage = 130;
+                this.range = 200;
                 this.pierce = 1;
             }else if(this.level == 4){
-                this.reload = 750;
-                this.damage = 40;
-                this.range = 350;
+                this.reload = 2250;
+                this.damage = 170;
+                this.range = 225;
                 this.pierce = 1;
             }else if(this.level == 5){
-                this.reload = 750;
-                this.damage = 50;
-                this.range = 350;
+                this.reload = 2000;
+                this.damage = 210;
+                this.range = 250;
                 this.pierce = 1;
             }else if(this.level == 6){
                 this.reload = 750;
@@ -1099,29 +1099,29 @@ class Tower {
             }
         }else if(this.type == "Minigun"){
             if(this.level == 1){
-                this.reload = 120;
-                this.damage = 2;
-                this.range = 150;
+                this.reload = 200;
+                this.damage = 1;
+                this.range = 120;
                 this.pierce = 1;
             }else if(this.level == 2){
-                this.reload = 120;
-                this.damage = 4;
-                this.range = 150;
+                this.reload = 180;
+                this.damage = 1.5;
+                this.range = 140;
                 this.pierce = 1;
             }else if(this.level == 3){
-                this.reload = 120;
-                this.damage = 6;
-                this.range = 150;
+                this.reload = 160;
+                this.damage = 2;
+                this.range = 160;
                 this.pierce = 1;
             }else if(this.level == 4){
-                this.reload = 120;
-                this.damage = 8;
-                this.range = 150;
+                this.reload = 140;
+                this.damage = 3;
+                this.range = 180;
                 this.pierce = 1;
             }else if(this.level == 5){
                 this.reload = 120;
-                this.damage = 10;
-                this.range = 150;
+                this.damage = 4;
+                this.range = 200;
                 this.pierce = 1;
             }else if(this.level == 6){
                 this.reload = 120;
@@ -1194,7 +1194,7 @@ class Tower {
         }else if(this.type == "tesla"){
             if (this.level == 1) {
                 this.maxcharge = 600;
-                this.damage = 5;
+                this.damage = 2;
                 this.range = 190;
                 this.ischarging = 1;
                 this.reload = 200;
@@ -1205,7 +1205,7 @@ class Tower {
             }
             else if (this.level == 2) {
                 this.maxcharge = 600;
-                this.damage = 10;
+                this.damage = 4;
                 this.range = 190;
                 this.ischarging = 1;
                 this.reload = 200;
@@ -1216,7 +1216,7 @@ class Tower {
             }
             else if (this.level == 3) {
                 this.maxcharge = 600;
-                this.damage = 15;
+                this.damage = 6;
                 this.range = 190;
                 this.ischarging = 1;
                 this.reload = 200;
@@ -1227,7 +1227,7 @@ class Tower {
             }
             else if (this.level == 4) {
                 this.maxcharge = 600;
-                this.damage = 20;
+                this.damage = 8;
                 this.range = 190;
                 this.ischarging = 1;
                 this.reload = 200;
@@ -1238,7 +1238,7 @@ class Tower {
             }
             else if (this.level == 5) {
                 this.maxcharge = 600;
-                this.damage = 25;
+                this.damage = 10;
                 this.range = 190;
                 this.ischarging = 1;
                 this.reload = 200;
@@ -1271,15 +1271,15 @@ class Tower {
             }
         }else if (this.type == "farm") {
             if (this.level == 1) {
-                this.income = 100;
+                this.income = 20;
             }else if (this.level == 2) {
-                this.income = 230;
+                this.income = 40;
             }else if (this.level == 3) {
-                this.income = 390;
+                this.income = 60;
             }else if (this.level == 4) {
-                this.income = 580;
+                this.income = 80;
             }else if (this.level == 5) {
-                this.income = 700;
+                this.income = 100;
             }else if (this.level == 6) {
                 this.income = 950;
             }else if (this.level == 7) {
@@ -1287,14 +1287,14 @@ class Tower {
             }
         }else if(this.type == "ice"){
             if (this.level == 1) {
-                this.range = 200;
-                this.slow = 20;
+                this.range = 150;
+                this.slow = 15;
             }else if (this.level == 2) {
                 this.range = 200;
                 this.slow = 30;
             }else if (this.level == 3) {
-                this.range = 200;
-                this.slow = 40;
+                this.range = 250;
+                this.slow = 45;
             }else if (this.level == 4) {
                 this.range = 200;
                 this.slow = 50;
@@ -1314,31 +1314,31 @@ class Tower {
                 this.reload = 750;
                 this.splash = 80;
                 this.range = 150;
-                this.pierce = 25;
+                this.pierce = 5;
             }else if (this.level == 2) {
                 this.damage = 4;
                 this.reload = 750;
                 this.splash = 80;
                 this.range = 150;
-                this.pierce = 25;
+                this.pierce = 7;
             }else if (this.level == 3) {
                 this.damage = 6;
                 this.reload = 750;
                 this.splash = 80;
                 this.range = 150;
-                this.pierce = 25;
+                this.pierce = 10;
             }else if (this.level == 4) {
                 this.damage = 8;
                 this.reload = 750;
                 this.splash = 80;
                 this.range = 150;
-                this.pierce = 25;
+                this.pierce = 10;
             }else if (this.level == 5) {
                 this.damage = 10;
                 this.reload = 750;
                 this.splash = 80;
                 this.range = 150;
-                this.pierce = 25;
+                this.pierce = 10;
             }else if (this.level == 6) {
                 this.damage = 20;
                 this.reload = 750;
@@ -1403,33 +1403,33 @@ class Tower {
             }
         }else if(this.type == "railgun"){//peircing shot straight down the line. 
             if(this.level == 1){
-                this.reload = 1800;
+                this.reload = 5000;
                 this.damage = 20;
-                this.pierce = 30;
-                this.range = 350;
+                this.pierce = 5;
+                this.range = 250;
                 this.railwidth = 11;
             }else if(this.level == 2){
-                this.reload = 1800;
-                this.damage = 40;
-                this.pierce = 30;
-                this.range = 350;
+                this.reload = 5000;
+                this.damage = 35;
+                this.pierce = 7;
+                this.range = 275;
                 this.railwidth = 11;
             }else if(this.level == 3){
-                this.reload = 1800;
-                this.damage = 60;
-                this.pierce = 30;
-                this.range = 350;
+                this.reload = 5000;
+                this.damage = 50;
+                this.pierce = 10;
+                this.range = 300;
                 this.railwidth = 11;
             }else if(this.level == 4){
-                this.reload = 1800;
-                this.damage = 80;
-                this.pierce = 30;
-                this.range = 350;
+                this.reload = 5000;
+                this.damage = 65;
+                this.pierce = 12;
+                this.range = 325;
                 this.railwidth = 11;
             }else if(this.level == 5){
-                this.reload = 1800;
-                this.damage = 100;
-                this.pierce = 30;
+                this.reload = 5000;
+                this.damage = 80;
+                this.pierce = 15;
                 this.range = 350;
                 this.railwidth = 11;
             }else if(this.level == 6){//fast shot
@@ -2167,6 +2167,14 @@ function towershoot(tower :Tower) :void {
                         tower.shootNow++;
                     }
                 }else{
+                    //flame level 2
+                    if(damage == 1.5){
+                        if(Math.random()>=.5){
+                            damage = 2;
+                        }else{
+                            damage = 1;
+                        }
+                    }
                     switch(tower.target){
                         case "first": {
                             if(tower.shootNow >= (tower.reload/speedModifier)/15 ){
@@ -2537,7 +2545,7 @@ function animate(){
             gameOver();
         }else{
             //calculate end of round cash
-            // totalmoney += 10+((round-1)*5);
+            totalmoney += 10;
             for(var i=0; i<towers.length; i++){//farm income
                 if(towers[i].type == "farm"){
                     totalmoney += towers[i].income;
@@ -2852,7 +2860,19 @@ function animate(){
         mouseover = "startWave";
     //@ts-ignore
     }else if(mouseX > canvas.width-canvas.width/7.5 + (canvas.width/7.5)/2 && mouseX < canvas.width - canvas.width/7.5 + (canvas.width/7.5)/2 + (canvas.width/7.5)/2 && mouseY > canvas.height/(numboxes/2)*(12/2) && mouseY < canvas.height/(numboxes/2)*(12/2)+canvas.height/(numboxes/2)){
-        mouseover = "upgrade";
+        var canupgrade = 0;
+        for(var i=0; i<towers.length; i++){
+            if(towers[i].selected == 1){
+                if(towers[i].level < availableTowers[13]){
+                    canupgrade = 1;
+                }
+            }
+        }
+        if(canupgrade){
+            mouseover = "upgrade";
+        }else{
+            mouseover = "none";
+        }
     //@ts-ignore
     }else if(mouseX > canvas.width-canvas.width/7.5 && mouseX < canvas.width-canvas.width/7.5 + (canvas.width/7.5)/2 && mouseY > canvas.height/(numboxes/2)*(12/2) && mouseY < canvas.height/(numboxes/2)*(12/2) + canvas.height/(numboxes/2)){
         mouseover = "sell";
