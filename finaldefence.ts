@@ -588,8 +588,8 @@ class Tower {
         this.shootNow = 10;
         this.buffs = 0;
         if (this.type == "Sniper") {
-            this.reload = 2500;
-            this.damage = 20;
+            this.reload = 3000;
+            this.damage = 50;
             this.range = 150;
             this.target = "first";
             this.pierce = 1;
@@ -606,17 +606,17 @@ class Tower {
             this.cost = miniguncosts;
             this.tallness = -18;
         }else if (this.type == "tesla") {
-            this.maxcharge = 400;
-            this.damage = 5;
-            this.range = 190;
+            this.maxcharge = 600;
+            this.damage = 2;
+            this.range = 170;
             this.ischarging = 1;
             this.target = "first";
-            this.reload = 200;
-            this.charge = 200;
+            this.reload = 150;
+            this.charge = 300;
             this.numTargets = 1;
             this.chargespd = 2.2;
             this.teslatargets = [];
-            this.value = 200;
+            this.value = 250;
             this.cost = teslacosts;
             this.tallness = 31;
         }else if (this.type == "laser") {
@@ -627,20 +627,20 @@ class Tower {
             this.lasertime = 5;
             this.heatup = 4;
             this.target = "strong";
-            this.value = 150;
+            this.value = 200;
             this.cost = lasercosts;
             this.tallness = 36;
         }else if (this.type == "farm") {
             this.generated = 0;
-            this.income = 50;
+            this.income = 20;
             this.range = 10000;
-            this.value = 800;
+            this.value = 200;
             this.cost = farmcosts;
             this.tallness = 0;
         }else if (this.type == "ice") {
-            this.range = 200;
-            this.slow = 10;
-            this.value = 100;
+            this.range = 120;
+            this.slow = 15;
+            this.value = 200;
             this.cost = icecosts;
             this.tallness = 0;
             this.target = "first";
@@ -649,7 +649,7 @@ class Tower {
             this.reload = 750;
             this.splash = 80;
             this.range = 150;
-            this.pierce = 25;
+            this.pierce = 5;
             this.target = "first";
             this.value = 100;
             this.cost = bombcosts;
@@ -670,12 +670,12 @@ class Tower {
             this.cost = buffercosts;
             this.tallness = 0;
         }else if (this.type == "railgun") { //piercing shot straight down the line. 
-            this.reload = 2000;
+            this.reload = 5000;
             this.damage = 20;
-            this.range = 350;
-            this.pierce = 35;
+            this.range = 250;
+            this.pierce = 5;
             this.target = "first";
-            this.value = 400;
+            this.value = 300;
             this.cost = railguncosts;
             this.tallness = 0;
             this.railwidth = 11;
@@ -1069,7 +1069,7 @@ class Tower {
             }else if(this.level == 2){
                 this.reload = 2750;
                 this.damage = 90;
-                this.range = 175;
+                this.range = 170;
                 this.pierce = 1;
             }else if(this.level == 3){
                 this.reload = 2500;
@@ -1195,9 +1195,9 @@ class Tower {
             if (this.level == 1) {
                 this.maxcharge = 600;
                 this.damage = 2;
-                this.range = 190;
+                this.range = 170;
                 this.ischarging = 1;
-                this.reload = 200;
+                this.reload = 150;
                 this.charge = 350;
                 this.numTargets = 1;
                 this.chargespd = 2.2;
@@ -1206,9 +1206,9 @@ class Tower {
             else if (this.level == 2) {
                 this.maxcharge = 600;
                 this.damage = 4;
-                this.range = 190;
+                this.range = 170;
                 this.ischarging = 1;
-                this.reload = 200;
+                this.reload = 150;
                 this.charge = 350;
                 this.numTargets = 1;
                 this.chargespd = 2.2;
@@ -1217,9 +1217,9 @@ class Tower {
             else if (this.level == 3) {
                 this.maxcharge = 600;
                 this.damage = 6;
-                this.range = 190;
+                this.range = 170;
                 this.ischarging = 1;
-                this.reload = 200;
+                this.reload = 150;
                 this.charge = 300;
                 this.numTargets = 1;
                 this.chargespd = 2.2;
@@ -1228,9 +1228,9 @@ class Tower {
             else if (this.level == 4) {
                 this.maxcharge = 600;
                 this.damage = 8;
-                this.range = 190;
+                this.range = 170;
                 this.ischarging = 1;
-                this.reload = 200;
+                this.reload = 150;
                 this.charge = 300;
                 this.numTargets = 1;
                 this.chargespd = 2.2;
@@ -1239,9 +1239,9 @@ class Tower {
             else if (this.level == 5) {
                 this.maxcharge = 600;
                 this.damage = 10;
-                this.range = 190;
+                this.range = 170;
                 this.ischarging = 1;
-                this.reload = 200;
+                this.reload = 150;
                 this.charge = 300;
                 this.numTargets = 1;
                 this.chargespd = 2.2;
@@ -2350,10 +2350,13 @@ function towershoot(tower :Tower) :void {
         }else if(tower.type == "tesla"){
             var timeToCharge = 1;
             //charging 
-            if(tower.charge < tower.maxcharge){
+            if(tower.charge < tower.maxcharge && tower.ischarging){
                 tower.charge += speedModifier * tower.chargespd;
             }
-            if(tower.charge >= 50) {
+            if(tower.charge >= tower.maxcharge-10){
+                tower.ischarging = 0;
+            }
+            if(tower.charge >= 50 && tower.ischarging == 0) {
                 tower.ischarging = 0;
                 for (var nextTarget = 0; nextTarget < tower.numTargets; nextTarget++) { //loops for multi target
                     inrange = 0;
@@ -2454,6 +2457,8 @@ function towershoot(tower :Tower) :void {
                 for (var i = tower.teslatargets.length - 1; i >= 0; i--) {
                     tower.teslatargets.splice(i, 1);
                 }
+            }else{
+                tower.ischarging = 1;
             }
             if (tower.charge <= 0 || timeToCharge == 1) {
                 tower.ischarging = 1;
