@@ -564,7 +564,7 @@ var Tower = /** @class */ (function () {
             this.tallness = 31;
         }
         else if (this.type == "laser") {
-            this.reload = 10;
+            this.reload = 20;
             this.range = 190;
             this.lasermax = 10;
             this.lasermin = 1;
@@ -1095,7 +1095,7 @@ var Tower = /** @class */ (function () {
         }
         else if (this.type == "laser") {
             if (this.level == 1) {
-                this.reload = 10;
+                this.reload = 20;
                 this.range = 190;
                 this.lasermax = 10;
                 this.lasermin = 1;
@@ -1103,7 +1103,7 @@ var Tower = /** @class */ (function () {
                 this.heatup = 4;
             }
             else if (this.level == 2) {
-                this.reload = 10;
+                this.reload = 20;
                 this.range = 190;
                 this.lasermax = 20;
                 this.lasermin = 1;
@@ -1111,7 +1111,7 @@ var Tower = /** @class */ (function () {
                 this.heatup = 8;
             }
             else if (this.level == 3) {
-                this.reload = 10;
+                this.reload = 20;
                 this.range = 190;
                 this.lasermax = 30;
                 this.lasermin = 1;
@@ -1119,7 +1119,7 @@ var Tower = /** @class */ (function () {
                 this.heatup = 12;
             }
             else if (this.level == 4) {
-                this.reload = 10;
+                this.reload = 20;
                 this.range = 190;
                 this.lasermax = 40;
                 this.lasermin = 1;
@@ -1127,7 +1127,7 @@ var Tower = /** @class */ (function () {
                 this.heatup = 16;
             }
             else if (this.level == 5) {
-                this.reload = 10;
+                this.reload = 20;
                 this.range = 190;
                 this.lasermax = 50;
                 this.lasermin = 1;
@@ -1894,9 +1894,6 @@ function towershoot(tower) {
                     break;
             }
         }
-        else {
-            tower.shootNow = 10;
-        }
         //inputs
         switch (tower.type) {
             case "Sniper":
@@ -2230,6 +2227,9 @@ function towershoot(tower) {
                     }
                 }
             }
+            else if (tower.shootNow < 500) {
+                tower.shootNow++;
+            }
             if (tower.sold == 0 && gameIsOver == 0) {
                 towershoot(tower);
                 clearInterval(firefunction);
@@ -2436,7 +2436,7 @@ function towershoot(tower) {
                 if (tower.shootNow >= (tower.reload / speedModifier) / 15) {
                     tower.shootNow = 0;
                     if (tower.level != 7 && tower.teslatargets.length > 0) { //reduces charge
-                        tower.charge -= 50;
+                        tower.charge -= 30;
                     }
                     //attack with all of tesla targets[]
                     tower.teslatargets.forEach(function (target) {
@@ -2460,12 +2460,11 @@ function towershoot(tower) {
                             else {
                                 target.shield = target.shield - 2; //2 damage to shields
                             }
-                            if (tower.level != 7 && tower.level != 6) {
-                                tower.charge += 50;
-                            }
-                            else if (tower.level != 7 && tower.maxcharge > tower.charge) {
-                                tower.charge += 25;
-                            }
+                            // if(tower.level != 7 && tower.level != 6){
+                            tower.charge -= 50;
+                            // }else if(tower.level != 7 && tower.maxcharge > tower.charge){
+                            // tower.charge += 25;
+                            // }
                         }
                     });
                 }

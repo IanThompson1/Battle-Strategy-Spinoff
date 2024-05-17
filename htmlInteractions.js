@@ -29,7 +29,7 @@ startGameButton.addEventListener('click', function () {
             totalmoney = 100;
             break;
         case 1:
-            bonusHint = "You now have access to the Bomb and Slow towers";
+            bonusHint = "You now have access to the Tesla and Laser towers";
             hint = "Here you will encounter grouped, speedy, and health regen enemies";
             if(difficulty < 3){
                 availableTowers = [1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 4];
