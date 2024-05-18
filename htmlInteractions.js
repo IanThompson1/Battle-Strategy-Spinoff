@@ -126,6 +126,11 @@ startGameButton.addEventListener('click', function () {
             round = output.innerHTML-1;
             break;
     }
+    //for testing: 
+    round = output.innerHTML-1;
+    totalmoney += round*100;
+
+
     //most tower spots
     if(difficulty != 5){
         towerSpots = [];

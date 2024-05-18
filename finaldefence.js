@@ -32,7 +32,7 @@ var retryButton2 = document.querySelector('#retry2');
 var resumeButton = document.querySelector('#resume');
 // const background = document.querySelector('#myVideo');
 // to do 
-// tomorrow: html waves consistent for restarts. stone cliffs only easy/medium. 
+// 
 // cont: remember updates. huge slow buff, reworked buffer, tower placement toggle / more spots 
 /*
 subclasses for towers and like everything else
@@ -550,14 +550,14 @@ var Tower = /** @class */ (function () {
         }
         else if (this.type == "tesla") {
             this.maxcharge = 600;
-            this.damage = 2;
-            this.range = 170;
+            this.damage = 5;
+            this.range = 190;
             this.ischarging = 1;
             this.target = "first";
             this.reload = 150;
             this.charge = 300;
             this.numTargets = 1;
-            this.chargespd = 2.2;
+            this.chargespd = 3;
             this.teslatargets = [];
             this.value = 250;
             this.cost = teslacosts;
@@ -1095,7 +1095,7 @@ var Tower = /** @class */ (function () {
         }
         else if (this.type == "laser") {
             if (this.level == 1) {
-                this.reload = 20;
+                this.reload = 15;
                 this.range = 190;
                 this.lasermax = 10;
                 this.lasermin = 1;
@@ -1103,34 +1103,34 @@ var Tower = /** @class */ (function () {
                 this.heatup = 4;
             }
             else if (this.level == 2) {
-                this.reload = 20;
+                this.reload = 15;
                 this.range = 190;
                 this.lasermax = 20;
-                this.lasermin = 1;
+                this.lasermin = 2;
                 this.lasertime = 5;
                 this.heatup = 8;
             }
             else if (this.level == 3) {
-                this.reload = 20;
+                this.reload = 15;
                 this.range = 190;
                 this.lasermax = 30;
-                this.lasermin = 1;
+                this.lasermin = 3;
                 this.lasertime = 5;
                 this.heatup = 12;
             }
             else if (this.level == 4) {
-                this.reload = 20;
+                this.reload = 15;
                 this.range = 190;
                 this.lasermax = 40;
-                this.lasermin = 1;
+                this.lasermin = 4;
                 this.lasertime = 5;
                 this.heatup = 16;
             }
             else if (this.level == 5) {
-                this.reload = 20;
+                this.reload = 15;
                 this.range = 190;
                 this.lasermax = 50;
-                this.lasermin = 1;
+                this.lasermin = 5;
                 this.lasertime = 5;
                 this.heatup = 20;
             }
@@ -1154,57 +1154,57 @@ var Tower = /** @class */ (function () {
         else if (this.type == "tesla") {
             if (this.level == 1) {
                 this.maxcharge = 600;
-                this.damage = 2;
-                this.range = 170;
+                this.damage = 5;
+                this.range = 190;
                 this.ischarging = 1;
                 this.reload = 150;
                 this.charge = 350;
                 this.numTargets = 1;
-                this.chargespd = 2.2;
+                this.chargespd = 3;
                 this.teslatargets = [];
             }
             else if (this.level == 2) {
                 this.maxcharge = 600;
-                this.damage = 4;
-                this.range = 170;
+                this.damage = 10;
+                this.range = 190;
                 this.ischarging = 1;
                 this.reload = 150;
                 this.charge = 350;
                 this.numTargets = 1;
-                this.chargespd = 2.2;
+                this.chargespd = 3;
                 this.teslatargets = [];
             }
             else if (this.level == 3) {
                 this.maxcharge = 600;
-                this.damage = 6;
-                this.range = 170;
+                this.damage = 15;
+                this.range = 190;
                 this.ischarging = 1;
                 this.reload = 150;
                 this.charge = 300;
                 this.numTargets = 1;
-                this.chargespd = 2.2;
+                this.chargespd = 3;
                 this.teslatargets = [];
             }
             else if (this.level == 4) {
                 this.maxcharge = 600;
-                this.damage = 8;
-                this.range = 170;
+                this.damage = 20;
+                this.range = 190;
                 this.ischarging = 1;
                 this.reload = 150;
                 this.charge = 300;
                 this.numTargets = 1;
-                this.chargespd = 2.2;
+                this.chargespd = 3;
                 this.teslatargets = [];
             }
             else if (this.level == 5) {
                 this.maxcharge = 600;
-                this.damage = 10;
-                this.range = 170;
+                this.damage = 25;
+                this.range = 190;
                 this.ischarging = 1;
                 this.reload = 150;
                 this.charge = 300;
                 this.numTargets = 1;
-                this.chargespd = 2.2;
+                this.chargespd = 3;
                 this.teslatargets = [];
             }
             else if (this.level == 6) { //multi target
@@ -1215,7 +1215,7 @@ var Tower = /** @class */ (function () {
                 this.reload = 200;
                 this.charge = 300;
                 this.numTargets = 2;
-                this.chargespd = 2.2;
+                this.chargespd = 3;
                 this.teslatargets = [];
             }
             else if (this.level == 7) { //no charge / ultimate tesla
@@ -2306,11 +2306,11 @@ function towershoot(tower) {
                                 tower.damage = tower.damage + tower.heatup; //heat up by tower heatup 
                                 //removes a little armor from target
                                 if (target.shield == 0) {
-                                    if (target.armor > 1) {
-                                        target.armor -= 2;
+                                    if (target.armor > tower.lasermin) {
+                                        target.armor -= tower.lasermin;
                                     }
-                                    else if (target.armor == 1) {
-                                        target.armor--;
+                                    else if (target.armor > 1) {
+                                        target.armor = 0;
                                     }
                                     if (tower.damage >= tower.lasermax) {
                                         tower.damage = tower.lasermax;
@@ -2340,7 +2340,7 @@ function towershoot(tower) {
                             }
                         }
                         else { //shield
-                            if (shieldcounter >= 4) { //breaks the shield every 50 hits
+                            if (shieldcounter >= 2) { //breaks the shield every 2 hits
                                 target.shield--;
                                 shieldcounter = 0;
                             }

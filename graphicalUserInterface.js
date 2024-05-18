@@ -264,7 +264,8 @@ function drawLayout() {
     }
     c.font = "40px serif";
     c.textAlign = "left";
-    c.fillText("Wave# " + round+" "+bonusHint, 0, 50);
+    var totalrounds = ((pathNum*5)+10)+((difficulty-1)*5);
+    c.fillText("Wave# " + round+"/"+totalrounds+" "+bonusHint, 0, 50);
     c.stroke();
     
     //towers

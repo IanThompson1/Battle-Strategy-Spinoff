@@ -402,7 +402,7 @@ function nextWave() {
                 gameIsOver = 1;
                 gameOver();
         }   
-    }else if(pathNum == 1 && difficulty == 1){//cross
+    }else if(pathNum == 1 && difficulty == 1){//cross easy
         switch(round){
             case 1: //money 60
                 spawnWave(20, 2000 * den, Math.floor(5 * hp), 3 * spd, 20, "green", 3, 0, 0, 0); //basic 
@@ -436,7 +436,7 @@ function nextWave() {
                 break;
             case 7: //money 70
                 spawnWave(70, 100 * den, Math.floor(2 * hp), 3 * spd, 20, "pink", 1, 0, 0, 0); //grouped 
-                hint = "5 stronger enemies";
+                hint = "";
                 break;
             case 8: //money 100
                 spawnWave(10, 2000 * den, Math.floor(60 * hp), 3 * spd, 20, "green", 10, 0, 0, 0); //basic 
@@ -470,8 +470,227 @@ function nextWave() {
             case 15: //money 200                
                 spawnWave(10, 2000 * den, Math.floor(100 * hp), 2 * spd, 30, "green", 5, 0, 0, 80); //regen 
                 spawnWave(20, 1000 * den, Math.floor(10 * hp), 3 * spd, 20, "green", 7, 0, 0, 0); //shields 
-                spawnWave(1, 20000 * den, Math.floor(300 * hp), 2 * spd, 20, "green", 10, 0, 0, 70); //regen 
+                spawnWave(1, 21000 * den, Math.floor(300 * hp), 2 * spd, 20, "green", 10, 0, 0, 70); //regen 
                 hint = "";
+                break;
+            default:
+                //win
+                console.log("you win");
+                gameIsOver = 1;
+                gameOver();
+        }
+    }else if(pathNum == 1 && difficulty == 2){//cross medium 
+        switch(round){
+            case 1: //money 60
+                spawnWave(20, 2000 * den, Math.floor(5 * hp), 3 * spd, 20, "green", 3, 0, 0, 0); //basic 
+                hint = "";
+                bonusHint = "";
+                break;
+            case 2: //money 90
+                spawnWave(30, 1000 * den, Math.floor(5 * hp), 3 * spd, 20, "green", 3, 0, 0, 0); //basic 
+                hint = "a few more";
+                bonusHint = "";
+                break;
+            case 3: //money 135
+                var multi = [];
+                multi.push([15, 500 * den, Math.floor(5 * hp), 3 * spd, 20, "green", 3, 0, 0, 0]); //tighter pack
+                multi.push([15, 1000 * den, Math.floor(5 * hp), 3 * spd, 20, "green", 3, 0, 0, 0]); //basics
+                multi.push([15, 500 * den, Math.floor(5 * hp), 3 * spd, 20, "green", 3, 0, 0, 0]); //tighter pack
+                spawnMultiWaves(multi);
+                hint = "";
+                break;
+            case 4: //money 60
+                spawnWave(20, 1000 * den, Math.floor(10 * hp), 3 * spd, 20, "green", 3, 0, 0, 0); //basic 
+                hint = "stronger";
+                break;
+            case 5: //money 60
+                spawnWave(20, 1000 * den, Math.floor(20 * hp), 3 * spd, 20, "green", 3, 0, 0, 0); //basic 
+                hint = "";
+                break;
+            case 6: //money 80
+                spawnWave(80, 100 * den, Math.floor(1 * hp), 3 * spd, 20, "pink", 1, 0, 0, 0); //grouped 
+                hint = "";
+                break;
+            case 7: //money 80
+                spawnWave(80, 100 * den, Math.floor(2 * hp), 3 * spd, 20, "pink", 1, 0, 0, 0); //grouped 
+                hint = "";
+                break;
+            case 8: //money 100
+                spawnWave(10, 2000 * den, Math.floor(60 * hp), 3 * spd, 20, "green", 10, 0, 0, 0); //basic 
+                hint = "";
+                break;
+            case 9: //money 60
+                spawnWave(20, 1000 * den, Math.floor(30 * hp), 3 * spd, 20, "green", 3, 0, 0, 0); //basic 
+                hint = "shields";
+                break;
+            case 10: //money 60
+                spawnWave(20, 1500 * den, Math.floor(30 * hp), 3 * spd, 20, "green", 3, 0, 2, 0); //basic 
+                hint = "regen";
+                break;
+            case 11: //money 50
+                spawnWave(10, 2000 * den, Math.floor(100 * hp), 2 * spd, 30, "green", 5, 0, 0, 100); //basic 
+                hint = "Lasers and Snipers are more effective";
+                bonusHint = "Regen have high health and slowly recover lost health";
+                break;
+            case 12: //money 50
+                spawnWave(10, 2000 * den, Math.floor(100 * hp), 2 * spd, 30, "green", 5, 0, 0, 80); //basic 
+                hint = "Single high regen";
+                break;
+            case 13: //money 50
+                spawnWave(1, 800 * den, Math.floor(250 * hp), 2 * spd, 20, "green", 50, 0, 10, 60); //basic 
+                hint = "";
+                break;
+            case 14: //money 70                
+                spawnWave(10, 2000 * den, Math.floor(130 * hp), 3 * spd, 20, "green", 7, 0, 0, 0); //basic 
+                hint = "";
+                break;
+            case 15: //money 200                
+                spawnWave(10, 2000 * den, Math.floor(100 * hp), 2 * spd, 30, "green", 5, 0, 0, 80); //regen 
+                spawnWave(20, 1000 * den, Math.floor(10 * hp), 3 * spd, 20, "green", 7, 0, 0, 0); //shields 
+                spawnWave(1, 21000 * den, Math.floor(300 * hp), 2 * spd, 20, "green", 10, 0, 0, 70); //regen 
+                hint = "";
+                break;
+            case 16: //money 70                
+                spawnWave(10, 1500 * den, Math.floor(150 * hp), 3 * spd, 20, "green", 7, 0, 0, 0); //basic 
+                hint = "fast";
+                break;
+            case 17: //money 70                
+                spawnWave(10, 1000 * den, Math.floor(50 * hp), 6 * spd, 20, "yellow", 7, 0, 0, 0); //fast 
+                hint = "Tesla is good against fast enemies";
+                break;
+            case 18: //money 70                
+                spawnWave(10, 700 * den, Math.floor(50 * hp), 6 * spd, 20, "yellow", 7, 0, 0, 0); //fast 
+                hint = "faster";
+                break;
+            case 19: //money 70                
+                spawnWave(10, 1000 * den, Math.floor(50 * hp), 10 * spd, 20, "yellow", 7, 0, 0, 0); //fast 
+                hint = "";
+                break;
+            case 20: //money 140                
+                spawnWave(20, 2000 * den, Math.floor(50 * hp), 10 * spd, 20, "yellow", 7, 0, 5, 0); //basic 
+                hint = "";
+                break;
+            default:
+                //win
+                console.log("you win");
+                gameIsOver = 1;
+                gameOver();
+        }
+    }else if(pathNum == 1 && difficulty == 3){//cross hard 
+        switch(round){
+            case 1: //money 60
+                spawnWave(20, 2000 * den, Math.floor(5 * hp), 3 * spd, 20, "green", 3, 0, 0, 0); //basic 
+                hint = "";
+                bonusHint = "";
+                break;
+            case 2: //money 90
+                spawnWave(30, 1000 * den, Math.floor(5 * hp), 3 * spd, 20, "green", 3, 0, 0, 0); //basic 
+                hint = "a few more";
+                bonusHint = "";
+                break;
+            case 3: //money 135
+                var multi = [];
+                multi.push([15, 500 * den, Math.floor(5 * hp), 3 * spd, 20, "green", 3, 0, 0, 0]); //tighter pack
+                multi.push([15, 1000 * den, Math.floor(5 * hp), 3 * spd, 20, "green", 3, 0, 0, 0]); //basics
+                multi.push([15, 500 * den, Math.floor(5 * hp), 3 * spd, 20, "green", 3, 0, 0, 0]); //tighter pack
+                spawnMultiWaves(multi);
+                hint = "";
+                break;
+            case 4: //money 60
+                spawnWave(20, 1000 * den, Math.floor(10 * hp), 3 * spd, 20, "green", 3, 0, 0, 0); //basic 
+                hint = "stronger";
+                break;
+            case 5: //money 60
+                spawnWave(20, 1000 * den, Math.floor(20 * hp), 3 * spd, 20, "green", 3, 0, 0, 0); //basic 
+                hint = "";
+                break;
+            case 6: //money 100
+                spawnWave(100, 90 * den, Math.floor(1 * hp), 3 * spd, 20, "pink", 1, 0, 0, 0); //grouped 
+                hint = "";
+                break;
+            case 7: //money 100
+                spawnWave(100, 90 * den, Math.floor(2 * hp), 3 * spd, 20, "pink", 1, 0, 0, 0); //grouped 
+                hint = "";
+                break;
+            case 8: //money 100
+                spawnWave(5, 2000 * den, Math.floor(60 * hp), 3 * spd, 20, "red", 20, 5, 0, 0); //armor 
+                hint = "";
+                break;
+            case 9: //money 60
+                spawnWave(20, 1000 * den, Math.floor(35 * hp), 3 * spd, 20, "green", 3, 0, 0, 0); //basic 
+                hint = "shields";
+                break;
+            case 10: //money 60
+                spawnWave(20, 1500 * den, Math.floor(30 * hp), 3 * spd, 20, "green", 3, 0, 3, 0); //basic 
+                hint = "regen";
+                break;
+            case 11: //money 50
+                spawnWave(10, 2000 * den, Math.floor(100 * hp), 2 * spd, 30, "green", 5, 0, 0, 100); //basic 
+                hint = "Lasers and Snipers are more effective";
+                bonusHint = "Regen have high health and slowly recover lost health";
+                break;
+            case 12: //money 50
+                spawnWave(10, 2000 * den, Math.floor(100 * hp), 2 * spd, 30, "green", 5, 0, 0, 80); //basic 
+                hint = "Single high regen";
+                break;
+            case 13: //money 50
+                spawnWave(1, 800 * den, Math.floor(250 * hp), 2 * spd, 20, "green", 50, 0, 10, 60); //basic 
+                hint = "";
+                break;
+            case 14: //money 70                
+                spawnWave(10, 2000 * den, Math.floor(130 * hp), 3 * spd, 20, "green", 7, 0, 0, 0); //basic 
+                hint = "";
+                break;
+            case 15: //money 200                
+                spawnWave(10, 2000 * den, Math.floor(100 * hp), 2 * spd, 30, "green", 5, 0, 0, 80); //regen 
+                spawnWave(20, 1000 * den, Math.floor(10 * hp), 3 * spd, 20, "green", 7, 0, 0, 0); //shields 
+                spawnWave(1, 21000 * den, Math.floor(300 * hp), 2 * spd, 20, "green", 10, 0, 0, 70); //regen 
+                hint = "";
+                break;
+            case 16: //money 70                
+                spawnWave(10, 1500 * den, Math.floor(150 * hp), 3 * spd, 20, "green", 7, 0, 0, 0); //basic 
+                hint = "fast";
+                break;
+            case 17: //money 70                
+                spawnWave(10, 1000 * den, Math.floor(50 * hp), 6 * spd, 20, "yellow", 7, 0, 0, 0); //fast 
+                hint = "Tesla is good against fast enemies";
+                break;
+            case 18: //money 70                
+                spawnWave(10, 700 * den, Math.floor(50 * hp), 6 * spd, 20, "yellow", 7, 0, 0, 0); //fast 
+                hint = "faster";
+                break;
+            case 19: //money 70                
+                spawnWave(10, 1000 * den, Math.floor(50 * hp), 9 * spd, 20, "yellow", 7, 0, 0, 0); //fast 
+                hint = "";
+                break;
+            case 20: //money 140                
+                spawnWave(20, 2000 * den, Math.floor(50 * hp), 9 * spd, 20, "yellow", 7, 0, 5, 0); //basic 
+                hint = "armored";
+                break;
+            case 21: //money 200
+                spawnWave(20, 1000 * den, Math.floor(150 * hp), 3 * spd, 20, "red", 10, 10, 0, 0); //armored 
+                hint = "";
+                break;
+            case 22: //money 200
+                spawnWave(20, 1000 * den, Math.floor(150 * hp), 3 * spd, 20, "red", 10, 20, 0, 0); //armored 
+                hint = "";
+                break;
+            case 23: //money 260
+                var multi = [];
+                multi.push([100, 200 * den, Math.floor(5 * hp), 3 * spd, 20, "pink", 1, 0, 0, 0]);
+                multi.push([1, 1000 * den, Math.floor(500 * hp), 2 * spd, 30, "green", 20, 0, 0, 80]);
+                multi.push([20, 2000 * den, Math.floor(50 * hp), 6 * spd, 20, "yellow", 7, 0, 0, 0]);
+                spawnMultiWaves(multi);
+                hint = "";
+                break;
+            case 24: //money 200
+                spawnWave(20, 1000 * den, Math.floor(100 * hp), 3 * spd, 20, "green", 10, 0, 5, 0); //basic 
+                hint = "Boss"
+                break;
+            case 25: //money 200
+                spawnWave(0, 0, 1, .7, 1, "clear", 0, 0, 0, 0, 1);
+                var regenBoss = new Enemy(spawnPoint(paths)[0], spawnPoint(paths)[1], Math.floor(5000 * hp), 1 * spd, spawnDirection(paths), 60, "boss", 200, 0, 0, 60, 1);
+                enemies.push(regenBoss);
                 break;
             default:
                 //win
