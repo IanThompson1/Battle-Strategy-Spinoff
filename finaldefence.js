@@ -32,7 +32,7 @@ var retryButton2 = document.querySelector('#retry2');
 var resumeButton = document.querySelector('#resume');
 // const background = document.querySelector('#myVideo');
 // to do 
-// 
+// add difficulty challenge*
 // cont: remember updates. huge slow buff, reworked buffer, tower placement toggle / more spots 
 /*
 subclasses for towers and like everything else
@@ -67,7 +67,7 @@ var paths3 = [[-1]];
 var pathNum = 0;
 //@ts-ignore
 var paths = choosepath(0); // 0=basic 1=cross 2=double 3=symmetry 4=castle 5=tripple
-var availableTowers = [1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2]; //mostly boolean values for which towers you can use. snip, flame, tesla, laser, slow, bomb, farm, rail, buff, super, level6, level7, selling, upgrade level.
+var availableTowers = [1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1]; //upgrade level for. snip, flame, tesla, laser, slow, bomb, farm, rail, buff, super, selling
 var totalmoney = 100;
 var lives = 10;
 var numboxes = 20;
@@ -1176,34 +1176,34 @@ var Tower = /** @class */ (function () {
             }
             else if (this.level == 3) {
                 this.maxcharge = 600;
+                this.damage = 10;
+                this.range = 190;
+                this.ischarging = 1;
+                this.reload = 150;
+                this.charge = 300;
+                this.numTargets = 2;
+                this.chargespd = 3;
+                this.teslatargets = [];
+            }
+            else if (this.level == 4) {
+                this.maxcharge = 600;
                 this.damage = 15;
                 this.range = 190;
                 this.ischarging = 1;
                 this.reload = 150;
                 this.charge = 300;
-                this.numTargets = 1;
+                this.numTargets = 2;
                 this.chargespd = 3;
                 this.teslatargets = [];
             }
-            else if (this.level == 4) {
+            else if (this.level == 5) {
                 this.maxcharge = 600;
                 this.damage = 20;
                 this.range = 190;
                 this.ischarging = 1;
                 this.reload = 150;
                 this.charge = 300;
-                this.numTargets = 1;
-                this.chargespd = 3;
-                this.teslatargets = [];
-            }
-            else if (this.level == 5) {
-                this.maxcharge = 600;
-                this.damage = 25;
-                this.range = 190;
-                this.ischarging = 1;
-                this.reload = 150;
-                this.charge = 300;
-                this.numTargets = 1;
+                this.numTargets = 3;
                 this.chargespd = 3;
                 this.teslatargets = [];
             }
@@ -1476,7 +1476,7 @@ var Tower = /** @class */ (function () {
         this.value = Math.floor(tempValue * (sellpercent / 10));
         // console.log(this.value);
         //0 sell value
-        if (availableTowers[12] == 0) {
+        if (availableTowers[10] == 0) {
             this.value = 0;
         }
         //tower buffs
@@ -2864,12 +2864,12 @@ function animate() {
         }
     }
     //@ts-ignore
-    if (availableTowers[0] == 1 && menutype == 0 && mouseX > canvas.width - canvas.width / 7.5 && mouseX < canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2 && mouseY > canvas.height / (numboxes / 2) * (2 / 2) && mouseY < canvas.height / (numboxes / 2) * (2 / 2) + canvas.height / (numboxes / 2)) {
+    if (availableTowers[0] != 0 && menutype == 0 && mouseX > canvas.width - canvas.width / 7.5 && mouseX < canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2 && mouseY > canvas.height / (numboxes / 2) * (2 / 2) && mouseY < canvas.height / (numboxes / 2) * (2 / 2) + canvas.height / (numboxes / 2)) {
         mouseover = "Sniper";
         //@ts-ignore
     }
     else if (mouseX > canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2 && mouseX < canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2 + (canvas.width / 7.5) / 2 && mouseY > canvas.height / (numboxes / 2) * ((3 - 1) / 2) && mouseY < canvas.height / (numboxes / 2) * ((3 - 1) / 2) + canvas.height / (numboxes / 2)) {
-        if (availableTowers[1] == 1 && menutype == 0) {
+        if (availableTowers[1] != 0 && menutype == 0) {
             mouseover = "Minigun";
         }
         else if (menutype == 1 && selectedTower == "none") {
@@ -2877,44 +2877,54 @@ function animate() {
         }
         //@ts-ignore
     }
-    else if (availableTowers[2] == 1 && menutype == 0 && mouseX > canvas.width - canvas.width / 7.5 && mouseX < canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2 && mouseY > canvas.height / (numboxes / 2) * (4 / 2) && mouseY < canvas.height / (numboxes / 2) * (4 / 2) + canvas.height / (numboxes / 2)) {
+    else if (availableTowers[2] != 0 && menutype == 0 && mouseX > canvas.width - canvas.width / 7.5 && mouseX < canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2 && mouseY > canvas.height / (numboxes / 2) * (4 / 2) && mouseY < canvas.height / (numboxes / 2) * (4 / 2) + canvas.height / (numboxes / 2)) {
         mouseover = "tesla";
         //@ts-ignore
     }
-    else if (availableTowers[4] == 1 && menutype == 0 && mouseX > canvas.width - canvas.width / 7.5 && mouseX < canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2 && mouseY > canvas.height / (numboxes / 2) * (6 / 2) && mouseY < canvas.height / (numboxes / 2) * (6 / 2) + canvas.height / (numboxes / 2)) {
+    else if (availableTowers[4] != 0 && menutype == 0 && mouseX > canvas.width - canvas.width / 7.5 && mouseX < canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2 && mouseY > canvas.height / (numboxes / 2) * (6 / 2) && mouseY < canvas.height / (numboxes / 2) * (6 / 2) + canvas.height / (numboxes / 2)) {
         mouseover = "ice";
         //@ts-ignore
     }
-    else if (availableTowers[6] == 1 && menutype == 0 && mouseX > canvas.width - canvas.width / 7.5 && mouseX < canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2 && mouseY > canvas.height / (numboxes / 2) * (8 / 2) && mouseY < canvas.height / (numboxes / 2) * (8 / 2) + canvas.height / (numboxes / 2)) {
+    else if (availableTowers[6] != 0 && menutype == 0 && mouseX > canvas.width - canvas.width / 7.5 && mouseX < canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2 && mouseY > canvas.height / (numboxes / 2) * (8 / 2) && mouseY < canvas.height / (numboxes / 2) * (8 / 2) + canvas.height / (numboxes / 2)) {
         mouseover = "farm";
         //@ts-ignore
     }
-    else if (availableTowers[8] == 1 && menutype == 0 && mouseX > canvas.width - canvas.width / 7.5 && mouseX < canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2 && mouseY > canvas.height / (numboxes / 2) * (10 / 2) && mouseY < canvas.height / (numboxes / 2) * (10 / 2) + canvas.height / (numboxes / 2)) {
+    else if (availableTowers[8] != 0 && menutype == 0 && mouseX > canvas.width - canvas.width / 7.5 && mouseX < canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2 && mouseY > canvas.height / (numboxes / 2) * (10 / 2) && mouseY < canvas.height / (numboxes / 2) * (10 / 2) + canvas.height / (numboxes / 2)) {
         mouseover = "buffer";
         //@ts-ignore
     }
-    else if (availableTowers[3] == 1 && menutype == 0 && mouseX > canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2 && mouseX < canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2 + (canvas.width / 7.5) / 2 && mouseY > canvas.height / (numboxes / 2) * ((5 - 1) / 2) && mouseY < canvas.height / (numboxes / 2) * ((5 - 1) / 2) + canvas.height / (numboxes / 2)) {
+    else if (availableTowers[3] != 0 && menutype == 0 && mouseX > canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2 && mouseX < canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2 + (canvas.width / 7.5) / 2 && mouseY > canvas.height / (numboxes / 2) * ((5 - 1) / 2) && mouseY < canvas.height / (numboxes / 2) * ((5 - 1) / 2) + canvas.height / (numboxes / 2)) {
         mouseover = "laser";
         //@ts-ignore
     }
-    else if (availableTowers[5] == 1 && menutype == 0 && mouseX > canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2 && mouseX < canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2 + (canvas.width / 7.5) / 2 && mouseY > canvas.height / (numboxes / 2) * ((7 - 1) / 2) && mouseY < canvas.height / (numboxes / 2) * ((7 - 1) / 2) + canvas.height / (numboxes / 2)) {
+    else if (availableTowers[5] != 0 && menutype == 0 && mouseX > canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2 && mouseX < canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2 + (canvas.width / 7.5) / 2 && mouseY > canvas.height / (numboxes / 2) * ((7 - 1) / 2) && mouseY < canvas.height / (numboxes / 2) * ((7 - 1) / 2) + canvas.height / (numboxes / 2)) {
         mouseover = "bomb";
         //@ts-ignore
     }
-    else if (availableTowers[7] == 1 && menutype == 0 && mouseX > canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2 && mouseX < canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2 + (canvas.width / 7.5) / 2 && mouseY > canvas.height / (numboxes / 2) * ((9 - 1) / 2) && mouseY < canvas.height / (numboxes / 2) * ((9 - 1) / 2) + canvas.height / (numboxes / 2)) {
+    else if (availableTowers[7] != 0 && menutype == 0 && mouseX > canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2 && mouseX < canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2 + (canvas.width / 7.5) / 2 && mouseY > canvas.height / (numboxes / 2) * ((9 - 1) / 2) && mouseY < canvas.height / (numboxes / 2) * ((9 - 1) / 2) + canvas.height / (numboxes / 2)) {
         mouseover = "railgun";
         //@ts-ignore
     }
-    else if (availableTowers[9] == 1 && menutype == 0 && mouseX > canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2 && mouseX < canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2 + (canvas.width / 7.5) / 2 && mouseY > canvas.height / (numboxes / 2) * ((11 - 1) / 2) && mouseY < canvas.height / (numboxes / 2) * ((11 - 1) / 2) + canvas.height / (numboxes / 2)) {
+    else if (availableTowers[9] != 0 && menutype == 0 && mouseX > canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2 && mouseX < canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2 + (canvas.width / 7.5) / 2 && mouseY > canvas.height / (numboxes / 2) * ((11 - 1) / 2) && mouseY < canvas.height / (numboxes / 2) * ((11 - 1) / 2) + canvas.height / (numboxes / 2)) {
         mouseover = "super";
         //@ts-ignore
     }
-    else if (availableTowers[10] == 1 && menutype == 1 && selectedlevel == "5" && mouseX > canvas.width - canvas.width / 7.5 && mouseX < canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2 && mouseY > canvas.height / (numboxes / 2) * (10 / 2) && mouseY < canvas.height / (numboxes / 2) * (10 / 2) + canvas.height / (numboxes / 2)) {
-        mouseover = "level6";
+    else if (menutype == 1 && selectedlevel == "5" && mouseX > canvas.width - canvas.width / 7.5 && mouseX < canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2 && mouseY > canvas.height / (numboxes / 2) * (10 / 2) && mouseY < canvas.height / (numboxes / 2) * (10 / 2) + canvas.height / (numboxes / 2)) {
+        if (canupgrade(6)) {
+            mouseover = "level6";
+        }
+        else {
+            mouseover = "none";
+        }
         //@ts-ignore
     }
-    else if (availableTowers[11] == 1 && menutype == 1 && selectedlevel == "5" && mouseX > canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2 && mouseX < canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2 + (canvas.width / 7.5) / 2 && mouseY > canvas.height / (numboxes / 2) * ((11 - 1) / 2) && mouseY < canvas.height / (numboxes / 2) * ((11 - 1) / 2) + canvas.height / (numboxes / 2)) {
-        mouseover = "level7";
+    else if (menutype == 1 && selectedlevel == "5" && mouseX > canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2 && mouseX < canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2 + (canvas.width / 7.5) / 2 && mouseY > canvas.height / (numboxes / 2) * ((11 - 1) / 2) && mouseY < canvas.height / (numboxes / 2) * ((11 - 1) / 2) + canvas.height / (numboxes / 2)) {
+        if (canupgrade(7)) {
+            mouseover = "level7";
+        }
+        else {
+            mouseover = "none";
+        }
         //@ts-ignore
     }
     else if (mouseX > canvas.width - canvas.width / 7.5 + 2.5 && mouseX < canvas.width - canvas.width / 7.5 + 2.5 + (canvas.width / 7.5) - 5 && mouseY > canvas.height - canvas.height / (numboxes / 2) + 2.5 && mouseY < canvas.height - canvas.height / (numboxes / 2) + 2.5 + canvas.height / (numboxes / 2) - 5) {
@@ -2922,15 +2932,7 @@ function animate() {
         //@ts-ignore
     }
     else if (mouseX > canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2 && mouseX < canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2 + (canvas.width / 7.5) / 2 && mouseY > canvas.height / (numboxes / 2) * (12 / 2) && mouseY < canvas.height / (numboxes / 2) * (12 / 2) + canvas.height / (numboxes / 2)) {
-        var canupgrade = 0;
-        for (var i = 0; i < towers.length; i++) {
-            if (towers[i].selected == 1) {
-                if (towers[i].level < availableTowers[13]) {
-                    canupgrade = 1;
-                }
-            }
-        }
-        if (canupgrade) {
+        if (canupgrade(0)) {
             mouseover = "upgrade";
         }
         else {
@@ -2972,6 +2974,63 @@ function animate() {
     }
     else {
         menutype = 0;
+    }
+}
+function canupgrade(max) {
+    for (var i = 0; i < towers.length; i++) {
+        if (towers[i].selected == 1) {
+            var towernum = -1;
+            switch (towers[i].type) {
+                case "Sniper":
+                    towernum = 0;
+                    break;
+                case "Minigun":
+                    towernum = 1;
+                    break;
+                case "tesla":
+                    towernum = 2;
+                    break;
+                case "laser":
+                    towernum = 3;
+                    break;
+                case "ice":
+                    towernum = 4;
+                    break;
+                case "bomb":
+                    towernum = 5;
+                    break;
+                case "farm":
+                    towernum = 6;
+                    break;
+                case "railgun":
+                    towernum = 7;
+                    break;
+                case "buffer":
+                    towernum = 8;
+                    break;
+                case "super":
+                    towernum = 9;
+                    break;
+            }
+            if (towernum == -1) {
+                return false;
+            }
+            if (towers[i].level == 5) {
+                if (max == 6 && availableTowers[towernum] == 6 || availableTowers[towernum] == 8) {
+                    return true;
+                }
+                else if (max == 7 && availableTowers[towernum] > 6) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }
+            if (towers[i].level < availableTowers[towernum]) {
+                return true;
+            }
+            return false;
+        }
     }
 }
 function activeWave() {
@@ -3160,8 +3219,21 @@ addEventListener("click", function () {
     if (mouseover == "towerSpots") {
         if (showTowerSpots == 0) {
             showTowerSpots = 1;
-            towerSpots = [];
-            towerSpots = towerSpots1;
+            switch (difficulty) {
+                case 1:
+                    towerSpots = towerSpots1;
+                    break;
+                case 2:
+                    towerSpots = towerSpots2;
+                    break;
+                case 3:
+                    towerSpots = towerSpots3;
+                    break;
+                case 4:
+                    towerSpots = towerSpots4;
+                    break;
+                default:
+            }
         }
         else {
             showTowerSpots = 0;

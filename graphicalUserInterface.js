@@ -270,34 +270,34 @@ function drawLayout() {
     
     //towers
     if(menutype == 0){
-        if(availableTowers[0] == 1){
+        if(availableTowers[0] != 0){
             addDoubleText("Sniper", "Cost: 200", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (2 / 2), "black", numboxes, canAfford(200));
         }
-        if(availableTowers[1] == 1){
+        if(availableTowers[1] != 0){
             addDoubleText("Flame", "Cost: 100", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (2 / 2), "black", numboxes, canAfford(100));
         }
-        if(availableTowers[2] == 1){
+        if(availableTowers[2] != 0){
             addDoubleText("Tesla", "Cost: 250", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (4 / 2), "black", numboxes, canAfford(250));
         }
-        if(availableTowers[3] == 1){
+        if(availableTowers[3] != 0){
             addDoubleText("laser", "Cost: 200", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (4 / 2), "black", numboxes, canAfford(200));
         }
-        if(availableTowers[4] == 1){
+        if(availableTowers[4] != 0){
             addDoubleText("Slow", "Cost: 200", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (6 / 2), "black", numboxes, canAfford(200));
         }
-        if(availableTowers[5] == 1){
+        if(availableTowers[5] != 0){
             addDoubleText("Bomb", "Cost: 150", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (6 / 2), "black", numboxes, canAfford(150));
         }
-        if(availableTowers[6] == 1){
+        if(availableTowers[6] != 0){
             addDoubleText("Farm", "Cost: 200", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes, canAfford(200));
         }
-        if(availableTowers[7] == 1){
+        if(availableTowers[7] != 0){
             addDoubleText("Railgun", "Cost: 300", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes, canAfford(300));
         }
-        if(availableTowers[8] == 1){
+        if(availableTowers[8] != 0){
             addDoubleText("Buffer", "Cost: 100", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (10 / 2), "black", numboxes, canAfford(100));
         }
-        if(availableTowers[9] == 1){
+        if(availableTowers[9] != 0){
             addDoubleText("Super", "Cost: 3000", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (10 / 2), "black", numboxes, canAfford(3000));
         }
     }
@@ -320,7 +320,7 @@ function drawLayout() {
                 addDoubleText("Range", "Long", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (6 / 2), "black", numboxes);
                 addText("sell:"+towers[i].value, canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (12 / 2), "yellow", numboxes);
 
-                if(towers[i].level < availableTowers[13]){
+                if(towers[i].level < availableTowers[0]){
                     addText("Level:"+(towers[i].level+1), canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes);
                     towers.push(new Tower(-100,-100,"Sniper",towers[i].level+1,0));
                     towers[towers.length-1].buffs = towers[i].buffs;
@@ -339,11 +339,11 @@ function drawLayout() {
                 addDoubleText("Speed", "Slow", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (4 / 2), "black", numboxes);
                 addDoubleText("Range", "Long", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (6 / 2), "black", numboxes);
 
-                if(availableTowers[10] == 1){
+                if(availableTowers[0] == 6 || availableTowers[0] == 8){
                     addDoubleText("Armor", "Piercing", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (8 / 2), "#8A1212", numboxes);
                     addDoubleText("Upgrade", "Cost:"+towers[i].cost[5], canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (10 / 2), "black", numboxes, canAfford(towers[i].cost[5]));
                 }
-                if(availableTowers[11] == 1){
+                if(availableTowers[0] > 6){
                     addDoubleText("Mega", "Damage", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (8 / 2), "#8A1212", numboxes);
                     addDoubleText("Upgrade", "Cost:"+towers[i].cost[6], canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (10 / 2), "black", numboxes, canAfford(towers[i].cost[6]));
                 }
@@ -370,7 +370,7 @@ function drawLayout() {
                 addDoubleText("Range", "Short", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (6 / 2), "black", numboxes);
                 addText("sell:"+towers[i].value, canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (12 / 2), "yellow", numboxes);
 
-                if(towers[i].level < availableTowers[13]){
+                if(towers[i].level < availableTowers[1]){
                     addText("level:"+(towers[i].level+1), canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes);
                     towers.push(new Tower(-100,-100,"Minigun",towers[i].level+1,0));
                     towers[towers.length-1].buffs = towers[i].buffs;
@@ -389,11 +389,11 @@ function drawLayout() {
                 addDoubleText("Speed", "Fast", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (4 / 2), "black", numboxes);
                 addDoubleText("Range", "Short", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (6 / 2), "black", numboxes);
 
-                if(availableTowers[10] == 1){
+                if(availableTowers[1] == 6 || availableTowers[1] == 8){
                     addDoubleText("Double", "Shot", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (8 / 2), "#8A1212", numboxes);
                     addDoubleText("Upgrade", "Cost:"+towers[i].cost[5], canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (10 / 2), "black", numboxes, canAfford(towers[i].cost[5]));
                 }
-                if(availableTowers[11] == 1){
+                if(availableTowers[1] > 6){
                     addDoubleText("High", "Damage", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (8 / 2), "#8A1212", numboxes);
                     addDoubleText("Upgrade", "Cost:"+towers[i].cost[6], canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (10 / 2), "black", numboxes, canAfford(towers[i].cost[6]));
                 }
@@ -423,7 +423,7 @@ function drawLayout() {
                 addDoubleText("Range", "Medium", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (6 / 2), "black", numboxes);
                 addText("sell:"+towers[i].value, canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (12 / 2), "yellow", numboxes);
 
-                if(towers[i].level < availableTowers[13]){
+                if(towers[i].level < availableTowers[3]){
                     addText("level:"+(towers[i].level+1), canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes);
                     towers.push(new Tower(-100,-100,"laser",towers[i].level+1,0));
                     towers[towers.length-1].buffs = towers[i].buffs;
@@ -443,11 +443,11 @@ function drawLayout() {
                 addDoubleText("HeatUp", towers[i].heatup, canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (6 / 2), "black", numboxes);
                 addDoubleText("Range", "Medium", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (6 / 2), "black", numboxes);
 
-                if(availableTowers[10] == 1){
+                if(availableTowers[3] == 6 || availableTowers[3] == 8){
                     addDoubleText("Multi", "Target", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (8 / 2), "#8A1212", numboxes);
                     addDoubleText("Upgrade", "Cost:"+towers[i].cost[5], canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (10 / 2), "black", numboxes, canAfford(towers[i].cost[5]));
                 }
-                if(availableTowers[11] == 1){
+                if(availableTowers[3] > 6){
                     addDoubleText("Super", "Laser", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (8 / 2), "#8A1212", numboxes);
                     addDoubleText("Upgrade", "Cost:"+towers[i].cost[6], canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (10 / 2), "black", numboxes, canAfford(towers[i].cost[6]));
                 }
@@ -478,7 +478,7 @@ function drawLayout() {
                 addDoubleText("Range", "Medium", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (6 / 2), "black", numboxes);
                 addText("sell:"+towers[i].value, canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (12 / 2), "yellow", numboxes);
 
-                if(towers[i].level < availableTowers[13]){
+                if(towers[i].level < availableTowers[2]){
                     addText("Level:"+(towers[i].level+1), canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes);
                     towers.push(new Tower(-100,-100,"tesla",towers[i].level+1,0));
                     towers[towers.length-1].buffs = towers[i].buffs;
@@ -498,11 +498,11 @@ function drawLayout() {
                 addDoubleText("Speed", "Medium", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (6 / 2), "black", numboxes);
                 addDoubleText("Range", "Medium", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (6 / 2), "black", numboxes);
 
-                if(availableTowers[10] == 1){
+                if(availableTowers[2] == 6 || availableTowers[2] == 8){
                     addDoubleText("Multi", "Target", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (8 / 2), "#8A1212", numboxes);
                     addDoubleText("Upgrade", "Cost:"+towers[i].cost[5], canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (10 / 2), "black", numboxes, canAfford(towers[i].cost[5]));
                 }
-                if(availableTowers[11] == 1){
+                if(availableTowers[2] > 6){
                     addDoubleText("No", "Charge", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (8 / 2), "#8A1212", numboxes);
                     addDoubleText("Upgrade", "Cost:"+towers[i].cost[6], canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (10 / 2), "black", numboxes, canAfford(towers[i].cost[6]));
                 }
@@ -531,7 +531,7 @@ function drawLayout() {
                 addDoubleText("Generated", towers[i].generated, canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (4 / 2), "black", numboxes);
                 addText("sell:"+towers[i].value, canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (12 / 2), "yellow", numboxes);
 
-                if(towers[i].level < availableTowers[13]){
+                if(towers[i].level < availableTowers[6]){
                     addDoubleText("Farm", "level:"+(towers[i].level+1), canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes);
                     towers.push(new Tower(-100,-100,"farm",towers[i].level+1,0));
                     towers[towers.length-1].update();
@@ -555,7 +555,7 @@ function drawLayout() {
                 addDoubleText("Range", "Short", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (4 / 2), "black", numboxes);
                 addText("sell:"+towers[i].value, canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (12 / 2), "yellow", numboxes);
 
-                if(towers[i].level < availableTowers[13]){
+                if(towers[i].level < availableTowers[4]){
                     addDoubleText("Ice", "level:"+(towers[i].level+1), canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes);
                     towers.push(new Tower(-100,-100,"ice",towers[i].level+1,0));
                     towers[towers.length-1].update();
@@ -572,11 +572,11 @@ function drawLayout() {
                 addDoubleText("Slow", towers[i].slow+"%", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (4 / 2), "black", numboxes);
                 addDoubleText("Range", "Short", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (4 / 2), "black", numboxes);
 
-                if(availableTowers[10] == 1){
+                if(availableTowers[4] == 6 || availableTowers[4] == 8){
                     addDoubleText("Big", "Range", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (8 / 2), "#8A1212", numboxes);
                     addDoubleText("Upgrade", "Cost:"+towers[i].cost[5], canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (10 / 2), "black", numboxes, canAfford(towers[i].cost[5]));
                 }
-                if(availableTowers[11] == 1){
+                if(availableTowers[4] > 6){
                     addDoubleText("Max", "Slow", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (8 / 2), "#8A1212", numboxes);
                     addDoubleText("Upgrade", "Cost:"+towers[i].cost[6], canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (10 / 2), "black", numboxes, canAfford(towers[i].cost[6]));
                 }
@@ -604,7 +604,7 @@ function drawLayout() {
                 addDoubleText("Pierce", towers[i].pierce, canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (6 / 2), "black", numboxes);
                 addText("sell:"+towers[i].value, canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (12 / 2), "yellow", numboxes);
 
-                if(towers[i].level < availableTowers[13]){
+                if(towers[i].level < availableTowers[5]){
                     addText("level:"+(towers[i].level+1), canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes);
                     towers.push(new Tower(-100,-100,"bomb",towers[i].level+1,0));
                     towers[towers.length-1].buffs = towers[i].buffs;
@@ -623,11 +623,11 @@ function drawLayout() {
                 addDoubleText("Splash", "Medium", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (6 / 2), "black", numboxes);
                 addDoubleText("Pierce", towers[i].pierce, canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (6 / 2), "black", numboxes);
 
-                if(availableTowers[10] == 1){
+                if(availableTowers[5] == 6 || availableTowers[5] == 8){
                     addDoubleText("Big", "Splash", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (8 / 2), "#8A1212", numboxes);
                     addDoubleText("Upgrade", "Cost:"+towers[i].cost[5], canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (10 / 2), "black", numboxes, canAfford(towers[i].cost[5]));
                 }
-                if(availableTowers[11] == 1){
+                if(availableTowers[5] > 6){
                     addDoubleText("High", "Damage", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (8 / 2), "#8A1212", numboxes);
                     addDoubleText("Upgrade", "Cost:"+towers[i].cost[6], canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (10 / 2), "black", numboxes, canAfford(towers[i].cost[6]));
                 }
@@ -660,7 +660,7 @@ function drawLayout() {
                 addDoubleText("Range", "Long", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (6 / 2), "black", numboxes);
                 addText("sell:"+towers[i].value, canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (12 / 2), "yellow", numboxes);
 
-                if(towers[i].level < availableTowers[13]){
+                if(towers[i].level < availableTowers[9]){
                     addText("Level:"+(towers[i].level+1), canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes);
                     towers.push(new Tower(-100,-100,"super",towers[i].level+1,0));
                     towers[towers.length-1].buffs = towers[i].buffs;
@@ -683,11 +683,11 @@ function drawLayout() {
                 addDoubleText("Range", "Long", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (4 / 2), "black", numboxes);
                 addDoubleText("Speed", "VeryFast", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (6 / 2), "black", numboxes);
 
-                if(availableTowers[10] == 1){
+                if(availableTowers[9] == 6 || availableTowers[9] == 8){
                     addDoubleText("Seeking", "Attack", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (8 / 2), "#8A1212", numboxes);
                     addDoubleText("Upgrade", "Cost:"+towers[i].cost[5], canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (10 / 2), "black", numboxes, canAfford(towers[i].cost[5]));
                 }
-                if(availableTowers[11] == 1){
+                if(availableTowers[9] > 6){
                     addDoubleText("Ultimate", "Power", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (8 / 2), "#8A1212", numboxes);
                     addDoubleText("Upgrade", "Cost:"+towers[i].cost[6], canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (10 / 2), "black", numboxes, canAfford(towers[i].cost[6]));
                 }
@@ -710,7 +710,7 @@ function drawLayout() {
                 addDoubleText("", "", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (4 / 2), "black", numboxes);
                 addDoubleText("", "", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (4 / 2), "black", numboxes);
                 addText("sell:"+towers[i].value, canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (12 / 2), "yellow", numboxes);
-                if(towers[i].level < availableTowers[13]){
+                if(towers[i].level < availableTowers[8]){
                     addDoubleText("Buffer", "level:2", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes);
                     addDoubleText("Speed", "1.2", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes);
                     addDoubleText("upgrade", "Cost:"+towers[i].cost[towers[i].level], canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (12 / 2), "black", numboxes, canAfford(towers[i].cost[towers[i].level]));
@@ -722,7 +722,7 @@ function drawLayout() {
                 addDoubleText("Speed", "1.2", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (4 / 2), "black", numboxes);
                 addDoubleText("", "", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (4 / 2), "black", numboxes);
                 addText("sell:"+towers[i].value, canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (12 / 2), "yellow", numboxes);
-                if(towers[i].level < availableTowers[13]){
+                if(towers[i].level < availableTowers[8]){
                     addDoubleText("Buffer", "level:3", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes);
                     addDoubleText("Damage", "+10", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes);
                     addDoubleText("upgrade", "Cost:"+towers[i].cost[towers[i].level], canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (12 / 2), "black", numboxes, canAfford(towers[i].cost[towers[i].level]));
@@ -734,7 +734,7 @@ function drawLayout() {
                 addDoubleText("Speed", "1.2", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (4 / 2), "black", numboxes);
                 addDoubleText("Damage", "+10", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (4 / 2), "black", numboxes);
                 addText("sell:"+towers[i].value, canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (12 / 2), "yellow", numboxes);
-                if(towers[i].level < availableTowers[13]){
+                if(towers[i].level < availableTowers[8]){
                     addDoubleText("Buffer", "level:4", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes);
                     addDoubleText("Pierce", "+1 OR x1.2", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes);
                     addDoubleText("Tesla", "x2 Targets", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (10 / 2), "red", numboxes);
@@ -749,7 +749,7 @@ function drawLayout() {
                 addDoubleText("Damage", "+10", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (4 / 2), "black", numboxes);
                 addDoubleText("Pierce", "+1 OR x1.2", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (6 / 2), "black", numboxes);
                 addText("sell:"+towers[i].value, canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (12 / 2), "yellow", numboxes);
-                if(towers[i].level < availableTowers[13]){
+                if(towers[i].level < availableTowers[8]){
                     addDoubleText("Buffer", "level:5", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes);
                     addDoubleText("Damage", "x1.2", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes);
                     addDoubleText("upgrade", "Cost:"+towers[i].cost[towers[i].level], canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (12 / 2), "black", numboxes, canAfford(towers[i].cost[towers[i].level]));
@@ -775,7 +775,7 @@ function drawLayout() {
                 addDoubleText("Pierce", towers[i].pierce, canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (6 / 2), "black", numboxes);
                 addText("sell:"+towers[i].value, canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (12 / 2), "yellow", numboxes);
 
-                if(towers[i].level < availableTowers[13]){
+                if(towers[i].level < availableTowers[7]){
                     addText("Level:"+(towers[i].level+1), canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (8 / 2), "black", numboxes);
                     towers.push(new Tower(-100,-100,"railgun",towers[i].level+1,0));
                     towers[towers.length-1].buffs = towers[i].buffs;
@@ -795,11 +795,11 @@ function drawLayout() {
                 addDoubleText("Range", "Long", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (6 / 2), "black", numboxes);
                 addDoubleText("Pierce", towers[i].pierce, canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (6 / 2), "black", numboxes);
 
-                if(availableTowers[10] == 1){
+                if(availableTowers[7] == 6 || availableTowers[7] == 8){
                     addDoubleText("Fast", "Attack", canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (8 / 2), "#8A1212", numboxes);
                     addDoubleText("Upgrade", "Cost:"+towers[i].cost[5], canvas.width - canvas.width / 7.5, canvas.height / (numboxes / 2) * (10 / 2), "black", numboxes, canAfford(towers[i].cost[5]));
                 }
-                if(availableTowers[11] == 1){
+                if(availableTowers[7] > 6){
                     addDoubleText("Ultimate", "Shot", canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (8 / 2), "#8A1212", numboxes);
                     addDoubleText("Upgrade", "Cost:"+towers[i].cost[6], canvas.width - canvas.width / 7.5 + (canvas.width / 7.5) / 2, canvas.height / (numboxes / 2) * (10 / 2), "black", numboxes, canAfford(towers[i].cost[6]));
                 }
